@@ -12,6 +12,7 @@ public class PluginConfig
     public ConfigEntry<bool> DisableRecipes { get; set; }
     public ConfigEntry<bool> DisableReadables { get; set; }
     public ConfigEntry<bool> DisableOther { get; set; }
+    public ConfigEntry<bool> DisableRelics { get; set; }
     public ConfigEntry<bool> DisableUnequipped { get; set; }
 
 
@@ -28,6 +29,7 @@ public class PluginConfig
             DisableRecipes = config.Bind("Weight", "Recipes", true, "true = Disable weight for recipes, false = keep vanilla weight behavior.");
             DisableReadables = config.Bind("Weight", "Readables", true, "true = Disable weight for readables, false = keep vanilla weight behavior.");
             DisableOther = config.Bind("Weight", "Other", true, "true = Disable weight for other items, false = keep vanilla weight behavior.");
+            DisableRelics = config.Bind("Weight", "Relics", true, "true = Disable weight for relics, false = keep vanilla weight behavior.");
             DisableUnequipped = config.Bind("Weight", "Unequipped", false, "true = Disable weight for unequipped items, false = keep vanilla weight behavior.");
         }
         finally

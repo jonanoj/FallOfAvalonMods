@@ -18,6 +18,7 @@ public class WeightPatch
                 || (__instance.IsCraftingComponent && Plugin.PluginConfig.DisableCraftingComponents.Value)
                 || (__instance.IsRecipe && Plugin.PluginConfig.DisableRecipes.Value)
                 || (__instance.IsReadable && Plugin.PluginConfig.DisableReadables.Value)
+                || (__instance.IsGem && Plugin.PluginConfig.DisableRelics.Value)
                 || (__instance.IsEquippable && !__instance.IsEquipped && Plugin.PluginConfig.DisableUnequipped.Value)
                 || (Plugin.PluginConfig.DisableOther.Value && ItemUtils.IsOther(__instance))
             )
