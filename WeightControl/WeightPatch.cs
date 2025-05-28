@@ -8,9 +8,19 @@ public class WeightPatch
     [HarmonyPatch(typeof(Item), nameof(Item.Weight), MethodType.Getter)]
     public class ItemWeightPatch
     {
-        public static void Postfix(ref float __result)
+        public static void Postfix(Item __instance, ref float __result)
         {
-            __result = 0f;
+            if (__instance.IsAlchemyComponent
+                || __instance.IsConsumable
+                || __instance.IsPlainFood
+                || __instance.IsPotion
+                || __instance.IsCraftingComponent
+                || __instance.IsRecipe
+                || __instance.IsReadable
+                || ItemUtils.IsOther(__instance))
+            {
+                __result = 0f;
+            }
         }
     }
 }
