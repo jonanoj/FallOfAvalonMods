@@ -25,4 +25,9 @@
       <HintPath>..\lib\TG.Main.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
 </Project>
