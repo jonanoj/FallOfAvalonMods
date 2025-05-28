@@ -10,14 +10,16 @@ public class WeightPatch
     {
         public static void Postfix(Item __instance, ref float __result)
         {
-            if (__instance.IsAlchemyComponent
-                || __instance.IsConsumable
-                || __instance.IsPlainFood
-                || __instance.IsPotion
-                || __instance.IsCraftingComponent
-                || __instance.IsRecipe
-                || __instance.IsReadable
-                || ItemUtils.IsOther(__instance))
+            if (
+                (__instance.IsAlchemyComponent && Plugin.PluginConfig.DisableAlchemyComponents.Value)
+                || (__instance.IsConsumable && Plugin.PluginConfig.DisableConsumables.Value)
+                || (__instance.IsPlainFood && Plugin.PluginConfig.DisablePlainFood.Value)
+                || (__instance.IsPotion && Plugin.PluginConfig.DisablePotions.Value)
+                || (__instance.IsCraftingComponent && Plugin.PluginConfig.DisableCraftingComponents.Value)
+                || (__instance.IsRecipe && Plugin.PluginConfig.DisableRecipes.Value)
+                || (__instance.IsReadable && Plugin.PluginConfig.DisableReadables.Value)
+                || (Plugin.PluginConfig.DisableOther.Value && ItemUtils.IsOther(__instance))
+            )
             {
                 __result = 0f;
             }
