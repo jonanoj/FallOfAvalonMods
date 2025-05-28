@@ -1,6 +1,8 @@
-﻿using BepInEx;
+﻿using System.Reflection;
+using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
+using HarmonyLib;
 
 namespace WeightControl;
 
@@ -9,10 +11,25 @@ public class Plugin : BasePlugin
 {
     internal static new ManualLogSource Log;
 
+    public Harmony HarmonyInstance { get; set; }
+
     public override void Load()
     {
-        // Plugin startup logic
         Log = base.Log;
+        Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
+
+        HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
+
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
+    }
+
+        public override bool Unload()
+    {
+        Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloading...");
+
+        HarmonyInstance.UnpatchSelf();
+
+        Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
+        return true;
     }
 }
