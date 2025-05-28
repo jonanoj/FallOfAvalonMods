@@ -4,7 +4,7 @@ using BepInEx.Unity.IL2CPP;
 
 namespace WeightControl;
 
-[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+[BepInPlugin(PluginConsts.PLUGIN_GUID, PluginConsts.PLUGIN_NAME, PluginConsts.PLUGIN_VERSION)]
 public class Plugin : BasePlugin
 {
     internal static new ManualLogSource Log;
@@ -13,6 +13,6 @@ public class Plugin : BasePlugin
     {
         // Plugin startup logic
         Log = base.Log;
-        Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
     }
 }
