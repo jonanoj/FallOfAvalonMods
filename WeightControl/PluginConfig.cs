@@ -14,7 +14,7 @@ public class PluginConfig
     public ConfigEntry<bool> DisableOther { get; set; }
     public ConfigEntry<bool> DisableRelics { get; set; }
     public ConfigEntry<bool> DisableUnequipped { get; set; }
-
+    public ConfigEntry<bool> DisableTools { get; set; }
 
     public PluginConfig(ConfigFile config)
     {
@@ -30,6 +30,8 @@ public class PluginConfig
             DisableReadables = config.Bind("Weight", "Readables", true, "true = Disable weight for readables, false = keep vanilla weight behavior.");
             DisableOther = config.Bind("Weight", "Other", true, "true = Disable weight for other items, false = keep vanilla weight behavior.");
             DisableRelics = config.Bind("Weight", "Relics", true, "true = Disable weight for relics, false = keep vanilla weight behavior.");
+            DisableTools = config.Bind("Weight", "Tools", true, "true = Disable weight for tools (Mining, Lumbering, Digging, etc.), false = keep vanilla weight behavior.");
+
             DisableUnequipped = config.Bind("Weight", "Unequipped", false, "true = Disable weight for unequipped items, false = keep vanilla weight behavior.");
         }
         finally
