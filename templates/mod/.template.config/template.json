@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "jonanoj",
+    "classifications": [
+        "Mod",
+        "TGFoA",
+        "BepInEx"
+    ],
+    "identity": "jonanoj.TaintedGrail.ModTemplate",
+    "name": "TG:FoA Mod Template",
+    "shortName": "tgfoamod",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "sourceName": "ModName",
+    "preferNameDirectory": true,
+    "symbols": {
+        "modAuthor": {
+            "type": "parameter",
+            "datatype": "text",
+            "description": "Author name (letters, numbers, and underscores only)",
+            "replaces": "ModAuthor"
+        }
+    }
+}
