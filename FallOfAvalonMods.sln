@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightControl", "WeightControl\WeightControl.csproj", "{272A45E1-B35E-F234-DBB5-B10F63A2EDB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastTravelAlways", "FastTravelAlways\FastTravelAlways.csproj", "{02BFAFEB-6336-4649-A0E1-E1F701927943}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{272A45E1-B35E-F234-DBB5-B10F63A2EDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{272A45E1-B35E-F234-DBB5-B10F63A2EDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{272A45E1-B35E-F234-DBB5-B10F63A2EDB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02BFAFEB-6336-4649-A0E1-E1F701927943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02BFAFEB-6336-4649-A0E1-E1F701927943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02BFAFEB-6336-4649-A0E1-E1F701927943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02BFAFEB-6336-4649-A0E1-E1F701927943}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
