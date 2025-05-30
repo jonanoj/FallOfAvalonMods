@@ -20,9 +20,9 @@
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
   </ItemGroup>
 
-    <ItemGroup>
-    <Reference Include="TG.Main">
-      <HintPath>..\lib\TG.Main.dll</HintPath>
+  <ItemGroup>
+    <Reference Include="..\lib\*.dll">
+      <HintPath>..\lib\$(AssemblyName).dll</HintPath>
     </Reference>
   </ItemGroup>
 
