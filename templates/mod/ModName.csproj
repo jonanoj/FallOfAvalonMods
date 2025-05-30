@@ -23,6 +23,7 @@
   <ItemGroup>
     <Reference Include="..\lib\*.dll">
       <HintPath>..\lib\$(AssemblyName).dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
 
