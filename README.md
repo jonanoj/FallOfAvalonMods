@@ -1,8 +1,17 @@
 # Tainted Grail: The Fall of Avalon Mods
 
-## Build a mod
+## Development environment setup
+### Acquiring the game DLLs
+1. Install [BepInEx](https://github.com/BepInEx/BepInEx) v6.0.0 Unity IL2CPP version (as of writing this guide, stable builds don't support the game yet, I've used [Bleeding Edge build #735](https://builds.bepinex.dev/projects/bepinex_be))
+1. Run the game at least once
+1. Create a `lib/` folder under the root dir of the project
+1. Copy `TG.Main.dll` to `lib/` (and additional DLLs if needed) from the path `GameDirectory/BepInEx/interop/TG.Main.dll`
+
+### Build a mod
 ```shell
 ./build.sh {Mod Folder Name}
+
+# Build output is saved to artifacts/{Mod Folder Name}.zip
 ```
 
 ## Update mod version
@@ -13,8 +22,6 @@
 
 # Then follow instructions to commit the version upgrade
 ```
-
-
 
 ## Generating a new mod
 ```shell
