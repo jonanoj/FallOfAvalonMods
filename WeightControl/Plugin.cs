@@ -29,7 +29,7 @@ public class Plugin : BasePlugin
     {
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloading...");
 
-        HarmonyInstance.UnpatchSelf();
+        HarmonyInstance?.UnpatchSelf();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
         return true;
