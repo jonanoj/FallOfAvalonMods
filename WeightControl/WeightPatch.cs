@@ -3,29 +3,26 @@ using HarmonyLib;
 
 namespace WeightControl;
 
-public class WeightPatch
+[HarmonyPatch(typeof(Item), nameof(Item.Weight), MethodType.Getter)]
+public class ItemWeightPatch
 {
-    [HarmonyPatch(typeof(Item), nameof(Item.Weight), MethodType.Getter)]
-    public class ItemWeightPatch
+    public static void Postfix(Item __instance, ref float __result)
     {
-        public static void Postfix(Item __instance, ref float __result)
+        if (
+            (__instance.IsAlchemyComponent && Plugin.PluginConfig.DisableAlchemyComponents.Value)
+            || (__instance.IsConsumable && Plugin.PluginConfig.DisableConsumables.Value)
+            || (__instance.IsPlainFood && Plugin.PluginConfig.DisablePlainFood.Value)
+            || (__instance.IsPotion && Plugin.PluginConfig.DisablePotions.Value)
+            || (__instance.IsCraftingComponent && Plugin.PluginConfig.DisableCraftingComponents.Value)
+            || (__instance.IsRecipe && Plugin.PluginConfig.DisableRecipes.Value)
+            || (__instance.IsReadable && Plugin.PluginConfig.DisableReadables.Value)
+            || (__instance.IsGem && Plugin.PluginConfig.DisableRelics.Value)
+            || (__instance.IsEquippable && !__instance.IsEquipped && Plugin.PluginConfig.DisableUnequipped.Value)
+            || (__instance.Tool != null && Plugin.PluginConfig.DisableTools.Value)
+            || (Plugin.PluginConfig.DisableOther.Value && ItemUtils.IsOther(__instance))
+        )
         {
-            if (
-                (__instance.IsAlchemyComponent && Plugin.PluginConfig.DisableAlchemyComponents.Value)
-                || (__instance.IsConsumable && Plugin.PluginConfig.DisableConsumables.Value)
-                || (__instance.IsPlainFood && Plugin.PluginConfig.DisablePlainFood.Value)
-                || (__instance.IsPotion && Plugin.PluginConfig.DisablePotions.Value)
-                || (__instance.IsCraftingComponent && Plugin.PluginConfig.DisableCraftingComponents.Value)
-                || (__instance.IsRecipe && Plugin.PluginConfig.DisableRecipes.Value)
-                || (__instance.IsReadable && Plugin.PluginConfig.DisableReadables.Value)
-                || (__instance.IsGem && Plugin.PluginConfig.DisableRelics.Value)
-                || (__instance.IsEquippable && !__instance.IsEquipped && Plugin.PluginConfig.DisableUnequipped.Value)
-                || (__instance.Tool != null && Plugin.PluginConfig.DisableTools.Value)
-                || (Plugin.PluginConfig.DisableOther.Value && ItemUtils.IsOther(__instance))
-            )
-            {
-                __result = 0f;
-            }
+            __result = 0f;
         }
     }
 }
