@@ -1,0 +1,28 @@
+name: .NET Format
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  format:
+    name: Check Formatting
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "6.0.x"
+
+      - name: Install dotnet format
+        run: dotnet tool install -g dotnet-format
+
+      - name: Run dotnet format
+        run: dotnet format --verify-no-changes --severity info
