@@ -1,0 +1,8 @@
+<Project>
+  <Target Name="CopyAllDllOutputsToGameDir" AfterTargets="Build">
+    <ItemGroup>
+      <BuiltDlls Include="$(OutputPath)*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(BuiltDlls)" DestinationFolder="$(BepInExPluginsDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

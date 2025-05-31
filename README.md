@@ -7,6 +7,17 @@
 1. Create a `lib/` folder under the root dir of the project
 1. Copy `TG.Main.dll` to `lib/` (and additional DLLs if needed) from the path `GameDirectory/BepInEx/interop/TG.Main.dll`
 
+### Configuring the Game Directory
+
+The build system copies mod DLLs to the directory set by the `GameDir` property in `Directory.Build.props` (default: `C:\Program Files (x86)\Steam\steamapps\common\Tainted Grail FoA`).
+
+**To change it:**
+1. Open `Directory.Build.props` in the repo root.
+1. Edit the path:
+   ```xml
+   <GameDir>D:\Alternative\Game\Path</GameDir>
+   ```
+
 ### Build a mod
 ```shell
 ./build.sh {Mod Folder Name}
