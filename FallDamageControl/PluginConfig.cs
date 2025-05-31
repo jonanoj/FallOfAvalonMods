@@ -4,6 +4,7 @@ namespace FallDamageControl;
 
 public class PluginConfig
 {
+    public ConfigEntry<FallDamageNegationMode> NegationMode { get; private set; }
     public ConfigEntry<float> FallDamageMultiplier { get; private set; }
 
     public PluginConfig(ConfigFile config)
@@ -11,10 +12,16 @@ public class PluginConfig
         config.SaveOnConfigSet = false;
         try
         {
-            FallDamageMultiplier = config.Bind("FallDamage", "FallDamageMultiplier", 0.5f,
+            NegationMode = config.Bind("FallDamage", "NegationMode",
+                FallDamageNegationMode.NonLethal,
                 """
-                Fall damage multiplier.
-
+                NonLethal = fall damage will always leave you with at least 1 HP.
+                MaxHealth = fall damage will always leave you with at least 1 HP only when you're at max health.
+                Vanilla = vanilla fall damage behavior.
+                """);
+            FallDamageMultiplier = config.Bind("FallDamage", "FallDamageMultiplier", 1f,
+                """
+                Fall damage multiplier
                 For example:
                   0 = no fall damage
                   0.5 = 50% fall damage
