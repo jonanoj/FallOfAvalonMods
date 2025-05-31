@@ -26,12 +26,13 @@ To change it:
 
 You can now run `dotnet build` which should automatically copy the game DLLs to the `lib\` directory under the solution.
 
-### Build a mod
+### Package a mod
+
+To package a mod for release, run the following script:
+Build output is saved to artifacts/{Mod Folder Name}.zip
 
 ```shell
-./build.sh {Mod Folder Name}
-
-# Build output is saved to artifacts/{Mod Folder Name}.zip
+./package.sh {Mod Folder Name}
 ```
 
 ## Update mod version
@@ -39,7 +40,7 @@ You can now run `dotnet build` which should automatically copy the game DLLs to 
 ```shell
 ./bump-version.sh {Mod Folder Name} major # breaking change
 ./bump-version.sh {Mod Folder Name} minor # new feature
-./bump-version.sh {Mod Folder Name} patch # patch
+./bump-version.sh {Mod Folder Name} patch # bug fix
 
 # Then follow instructions to commit the version upgrade
 ```
