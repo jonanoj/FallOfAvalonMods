@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightControl", "WeightCont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastTravelAlways", "FastTravelAlways\FastTravelAlways.csproj", "{02BFAFEB-6336-4649-A0E1-E1F701927943}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FallDamageControl", "FallDamageControl\FallDamageControl.csproj", "{A00CE560-FA99-4765-B722-3E49DE3DB7DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{02BFAFEB-6336-4649-A0E1-E1F701927943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02BFAFEB-6336-4649-A0E1-E1F701927943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02BFAFEB-6336-4649-A0E1-E1F701927943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A00CE560-FA99-4765-B722-3E49DE3DB7DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00CE560-FA99-4765-B722-3E49DE3DB7DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00CE560-FA99-4765-B722-3E49DE3DB7DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00CE560-FA99-4765-B722-3E49DE3DB7DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
