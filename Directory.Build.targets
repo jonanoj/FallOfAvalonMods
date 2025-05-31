@@ -1,8 +1,9 @@
 <Project>
-  <Target Name="CopyAllDllOutputsToGameDir" AfterTargets="Build">
+  <Target Name="CopyToBepInExPlugins" AfterTargets="Build">
     <ItemGroup>
-      <BuiltDlls Include="$(OutputPath)*.dll" />
+      <BuiltDlls Include="$(OutputPath)*.dll"/>
     </ItemGroup>
-    <Copy SourceFiles="@(BuiltDlls)" DestinationFolder="$(BepInExPluginsDir)" SkipUnchangedFiles="true" />
+    <Error Condition="!Exists('$(BepInExPluginsDir)')" Text="BepInEx plugins directory does not exist: $(BepInExPluginsDir)"/>
+    <Copy SourceFiles="@(BuiltDlls)" DestinationFolder="$(BepInExPluginsDir)" SkipUnchangedFiles="true"/>
   </Target>
 </Project>
