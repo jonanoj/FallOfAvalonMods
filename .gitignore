@@ -58,3 +58,4 @@ lib/
 
 # JetBrains config
 .idea/
+*.DotSettings.user
