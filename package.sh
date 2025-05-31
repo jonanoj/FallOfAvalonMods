@@ -52,20 +52,51 @@ echo "Previous release tag for $modDir: $prev_tag"
 changelog_path="$SCRIPT_DIR/artifacts/${modDir}_CHANGELOG.txt"
 
 if [[ -z "$prev_tag" ]]; then
-    echo "No previous tag found for $modDir. Creating initial changelog."
-    echo "Initial version" > "$changelog_path"
+    echo "No previous tag for $modDir, not creating changelog."
 else
     git log --pretty=format:"%h %s (%an, %ad)" --date=format:'%Y-%m-%d %H:%M' $prev_tag..$current_tag -- "$modDir" > "$changelog_path"
+
+    echo
+    echo "========="
+    echo "Changelog for $modDir:"
+    echo "========="
+    cat "$changelog_path"
+    echo
 fi
 
+package_zip() {
+    local zip_path="$1"
+    local variation_dir="$2" # May be empty for no variation
 
-echo
-echo "========="
-echo "Changelog for $modDir:"
-echo "========="
-cat "$changelog_path"
-echo
-echo
+    echo
+    echo "Packaging $modDir into $zip_path"
 
-rm -f "$SCRIPT_DIR/artifacts/${modDir}.zip"
-7za a -tzip "$SCRIPT_DIR/artifacts/${modDir}.zip" "$SCRIPT_DIR/$modDir/bin/Release/net6.0/${modDir}.dll" "$changelog_path" | grep -i "archive"
+    local tmpdir=$(mktemp -d)
+    mkdir -p "$tmpdir/plugins"
+    cp "$SCRIPT_DIR/$modDir/bin/Release/net6.0/${modDir}.dll" "$tmpdir/plugins/"
+    if [[ -f "$changelog_path" ]]; then
+        cp "$changelog_path" "$tmpdir/plugins/"
+    fi
+    if [[ -n "$variation_dir" ]]; then
+        cp -r "$variation_dir/." "$tmpdir/"
+    fi
+
+    # Remove all .gitkeep files from the temp dir before zipping
+    find "$tmpdir" -type f -name ".gitkeep" -delete
+
+    rm -f $zip_path
+    (cd "$tmpdir" && 7za a -tzip "$zip_path" ./* | grep -i "archive")
+    rm -rf "$tmpdir"
+}
+
+if [[ -d "$modDir/variations" ]]; then
+    echo "Found variations for $modDir. Packaging each variation."
+    for variation in "$modDir/variations"/*; do
+        if [[ -d "$variation" ]]; then
+            var_name=$(basename "$variation")
+            package_zip "$SCRIPT_DIR/artifacts/${modDir}-${var_name}.zip" "$variation"
+        fi
+    done
+else
+    package_zip "$SCRIPT_DIR/artifacts/${modDir}.zip" ""
+fi
