@@ -77,6 +77,15 @@ dotnet_naming_symbols.private_internal_fields.applicable_accessibilities = priva
 dotnet_naming_style.camel_case_underscore_style.required_prefix = _
 dotnet_naming_style.camel_case_underscore_style.capitalization = camel_case
 
+# Allow Harmony patch parameters with __ prefix
+# This disables the underscore prefix rule for parameters with __
+dotnet_naming_rule.allow_harmony_patch_parameters.severity = none
+dotnet_naming_rule.allow_harmony_patch_parameters.symbols = harmony_patch_parameters
+dotnet_naming_rule.allow_harmony_patch_parameters.style = double_underscore_prefix_style
+dotnet_naming_symbols.harmony_patch_parameters.applicable_kinds = parameter
+dotnet_naming_style.double_underscore_prefix_style.required_prefix = __
+dotnet_naming_style.double_underscore_prefix_style.capitalization = camel_case
+
 # Code style defaults
 csharp_using_directive_placement = outside_namespace:suggestion
 dotnet_sort_system_directives_first = true
