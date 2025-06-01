@@ -22,6 +22,9 @@ public class Plugin : BasePlugin
         PluginConfig = new PluginConfig(Config);
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
+        Log.LogInfo(
+            $"Loaded configuration: NegationMode: {PluginConfig.NegationMode.Value} FallDamageMultiplier: {PluginConfig.FallDamageMultiplier.Value}");
+
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
     }
 
