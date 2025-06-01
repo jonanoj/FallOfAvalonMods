@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastTravelAlways", "FastTra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FallDamageControl", "FallDamageControl\FallDamageControl.csproj", "{A00CE560-FA99-4765-B722-3E49DE3DB7DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigherSummonLimit", "HigherSummonLimit\HigherSummonLimit.csproj", "{0096F2CE-E288-4F23-9EB1-AD624392A76E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{A00CE560-FA99-4765-B722-3E49DE3DB7DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A00CE560-FA99-4765-B722-3E49DE3DB7DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A00CE560-FA99-4765-B722-3E49DE3DB7DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0096F2CE-E288-4F23-9EB1-AD624392A76E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0096F2CE-E288-4F23-9EB1-AD624392A76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0096F2CE-E288-4F23-9EB1-AD624392A76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0096F2CE-E288-4F23-9EB1-AD624392A76E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
