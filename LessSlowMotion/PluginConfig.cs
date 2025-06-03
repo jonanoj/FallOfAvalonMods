@@ -4,16 +4,21 @@ namespace LessSlowMotion;
 
 public class PluginConfig
 {
-    // TODO: add config if needed
-    // public ConfigEntry<bool> MyValue { get; private set; }
+    public ConfigEntry<int> MinimumKillCameraCooldownSecs { get; private set; }
+    public ConfigEntry<int> MinimumSlowMotionCooldownSecs { get; private set; }
 
     public PluginConfig(ConfigFile config)
     {
         config.SaveOnConfigSet = false;
         try
         {
-            // TODO: add config bindings as needed
-            // MyValue = config.Bind("Category", "ValueName", DefaultValue, "Description");
+            MinimumKillCameraCooldownSecs = config.Bind("LessSlowMotion", "MinimumKillCameraCooldownSecs", 120,
+                "Minimum delay in seconds between kill cameras.");
+            MinimumSlowMotionCooldownSecs = config.Bind("LessSlowMotion", "MinimumSlowMotionCooldownSecs", 30,
+                """
+                Minimum delay in seconds between slow motion events.
+                This cover non-kill camera slow motions like backstabs or critical hits
+                """);
         }
         finally
         {
