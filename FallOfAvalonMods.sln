@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigherSummonLimit", "Higher
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnlimitedOriginPotions", "UnlimitedOriginPotions\UnlimitedOriginPotions.csproj", "{3D15B8C2-49DA-40DA-83D6-A1F728CDFD6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessSlowMotion", "LessSlowMotion\LessSlowMotion.csproj", "{07C83C5A-D428-48D0-B994-44A8F9FFA314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{3D15B8C2-49DA-40DA-83D6-A1F728CDFD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D15B8C2-49DA-40DA-83D6-A1F728CDFD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D15B8C2-49DA-40DA-83D6-A1F728CDFD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C83C5A-D428-48D0-B994-44A8F9FFA314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C83C5A-D428-48D0-B994-44A8F9FFA314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C83C5A-D428-48D0-B994-44A8F9FFA314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C83C5A-D428-48D0-B994-44A8F9FFA314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
