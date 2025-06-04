@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../Mod.props"/>
+  <PropertyGroup>
+    <AssemblyName>DisableNightGlow</AssemblyName>
+    <Product>DisableNightGlow</Product>
+    <Version>1.0.0</Version>
+    <RootNamespace>DisableNightGlow</RootNamespace>
+  </PropertyGroup>
+</Project>
