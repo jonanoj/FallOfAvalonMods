@@ -19,6 +19,7 @@ public class ItemWeightPatch
             || (__instance.IsGem && Plugin.PluginConfig.DisableRelics.Value)
             || (__instance.IsEquippable && !__instance.IsEquipped && Plugin.PluginConfig.DisableUnequipped.Value)
             || (__instance.Tool != null && Plugin.PluginConfig.DisableTools.Value)
+            || (__instance.IsArrow && Plugin.PluginConfig.DisableArrows.Value)
             || (Plugin.PluginConfig.DisableOther.Value && __instance.IsOther())
         )
         {
