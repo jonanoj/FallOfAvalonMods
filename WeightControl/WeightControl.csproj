@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>WeightControl</AssemblyName>
     <Product>WeightControl</Product>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <RootNamespace>WeightControl</RootNamespace>
   </PropertyGroup>
 </Project>
