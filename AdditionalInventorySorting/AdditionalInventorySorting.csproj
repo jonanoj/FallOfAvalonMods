@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../Mod.props"/>
+  <PropertyGroup>
+    <AssemblyName>AdditionalInventorySorting</AssemblyName>
+    <Product>AdditionalInventorySorting</Product>
+    <Version>1.0.0</Version>
+    <RootNamespace>AdditionalInventorySorting</RootNamespace>
+  </PropertyGroup>
+</Project>

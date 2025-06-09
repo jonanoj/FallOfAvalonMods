@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisableNightGlow", "Disable
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessHoldTime", "LessHoldTime\LessHoldTime.csproj", "{A45A835E-651C-471F-AF29-99AD8CCCE758}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdditionalInventorySorting", "AdditionalInventorySorting\AdditionalInventorySorting.csproj", "{21248351-A25F-4AAB-9118-428635EBAA06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{A45A835E-651C-471F-AF29-99AD8CCCE758}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A45A835E-651C-471F-AF29-99AD8CCCE758}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A45A835E-651C-471F-AF29-99AD8CCCE758}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21248351-A25F-4AAB-9118-428635EBAA06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21248351-A25F-4AAB-9118-428635EBAA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21248351-A25F-4AAB-9118-428635EBAA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21248351-A25F-4AAB-9118-428635EBAA06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
