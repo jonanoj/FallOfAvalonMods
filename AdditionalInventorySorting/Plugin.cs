@@ -10,7 +10,6 @@ namespace AdditionalInventorySorting;
 public class Plugin : BasePlugin
 {
     internal static new ManualLogSource Log;
-    internal static PluginConfig PluginConfig;
 
     public Harmony HarmonyInstance { get; set; }
 
@@ -19,7 +18,18 @@ public class Plugin : BasePlugin
         Log = base.Log;
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
 
-        PluginConfig = new PluginConfig(Config);
+        if (!ItemsSortingExtended.InjectMembers())
+        {
+            Log.LogError("Failed to inject ItemsSorting RichEnum extensions");
+            return;
+        }
+
+        if (!ItemsSortingPatch.InjectComparers())
+        {
+            Log.LogError("Failed to inject custom comparers to ItemSorting list");
+            return;
+        }
+
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
