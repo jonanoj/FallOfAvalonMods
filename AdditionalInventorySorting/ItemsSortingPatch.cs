@@ -13,8 +13,7 @@ public class ItemsSortingPatch
         ItemsSorting[] additionalComparers = [ItemsSortingExtended.ByWorthDesc, ItemsSortingExtended.ByWorthAsc];
 
         bool success = true;
-        Func<ItemsSorting, ItemsSorting, bool> richEnumComparer = (x, y) => x.CompareTo(y) == 0;
-        if (!ListInjection.TryInsertAfter(ItemsSorting.BaseComparers, richEnumComparer, ItemsSorting.ByPriceDescending,
+        if (!ListInjection.TryInsertAfter(ItemsSorting.BaseComparers, RichEnumComparer, ItemsSorting.ByPriceDescending,
                 additionalComparers))
         {
             success = false;
@@ -22,7 +21,7 @@ public class ItemsSortingPatch
                 $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.BaseComparers)}");
         }
 
-        if (!ListInjection.TryInsertAfter(ItemsSorting.AllComparers, richEnumComparer, ItemsSorting.ByPriceDescending,
+        if (!ListInjection.TryInsertAfter(ItemsSorting.AllComparers, RichEnumComparer, ItemsSorting.ByPriceDescending,
                 additionalComparers))
         {
             success = false;
@@ -30,7 +29,7 @@ public class ItemsSortingPatch
                 $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.AllComparers)}");
         }
 
-        if (!ListInjection.TryInsertAfter(ItemsSorting.ArmorComparers, richEnumComparer,
+        if (!ListInjection.TryInsertAfter(ItemsSorting.ArmorComparers, RichEnumComparer,
                 ItemsSorting.ByPriceDescending,
                 additionalComparers))
         {
@@ -39,7 +38,7 @@ public class ItemsSortingPatch
                 $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.ArmorComparers)}");
         }
 
-        if (!ListInjection.TryInsertAfter(ItemsSorting.WeaponComparers, richEnumComparer,
+        if (!ListInjection.TryInsertAfter(ItemsSorting.WeaponComparers, RichEnumComparer,
                 ItemsSorting.ByPriceDescending,
                 additionalComparers))
         {
@@ -49,7 +48,7 @@ public class ItemsSortingPatch
         }
 
 #if DEBUG
-        foreach (var comparer in ItemsSorting.AllComparers)
+        foreach (ItemsSorting comparer in ItemsSorting.AllComparers)
         {
             Plugin.Log.LogInfo($"Got comparer: {comparer.EnumName} - name={comparer.Name}, locID={comparer._name.ID}");
         }
@@ -57,6 +56,8 @@ public class ItemsSortingPatch
 
         return success;
     }
+
+    private static bool RichEnumComparer(ItemsSorting x, ItemsSorting y) => x.CompareTo(y) == 0;
 
     [HarmonyPatch(typeof(ItemsSorting), nameof(ItemsSorting.Compare), typeof(Item), typeof(Item))]
     [HarmonyPrefix]

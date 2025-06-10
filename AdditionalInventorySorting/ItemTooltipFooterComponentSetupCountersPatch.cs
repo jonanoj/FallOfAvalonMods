@@ -13,6 +13,6 @@ public class ItemTooltipFooterComponentSetupCountersPatch
     {
         float ratio = ExtendedItemComparers.GetPriceToWeightRatio(itemDescriptor.Price, itemDescriptor.Weight);
         string ratioText = float.IsInfinity(ratio) ? "∞" : ratio.ToString(CultureInfo.InvariantCulture);
-        __instance.priceText.text = $"({ratioText}) {itemDescriptor.Price.ToString()}";
+        __instance.priceText.text = $"({ratioText}) {itemDescriptor.Price}";
     }
 }

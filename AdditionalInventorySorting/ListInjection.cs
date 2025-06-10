@@ -39,7 +39,7 @@ public static class ListInjection
             return false;
         }
 
-        foreach (var item in itemsToAdd.Reverse())
+        foreach (T item in itemsToAdd.Reverse())
         {
             list.Insert(afterWhatIndex + 1, item);
         }

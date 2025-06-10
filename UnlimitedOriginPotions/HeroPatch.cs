@@ -23,7 +23,7 @@ public class HeroPatch
             return;
         }
 
-        var firstItem = __instance.HeroItems.Inventory.FirstOrDefault();
+        Item firstItem = __instance.HeroItems.Inventory.FirstOrDefault();
         if (firstItem == null)
         {
             Plugin.Log.LogWarning("Hero's inventory is empty. Cannot add potion.");
@@ -31,7 +31,7 @@ public class HeroPatch
         }
 
         // TODO: find a better way to get the IInventory, for some reason Hero.Inventory is a separate ICharacterInventory interface, and you can't cast it to IInventory
-        var inventory = firstItem.Inventory;
+        IInventory inventory = firstItem.Inventory;
 
         float currentPotions = inventory.NumberOfItems(originPotionTemplate);
         if (currentPotions >= 10)
@@ -48,7 +48,7 @@ public class HeroPatch
 
     private static bool TryGetItemTemplate(string guid, [MaybeNullWhen(false)] out ItemTemplate originPotionTemplate)
     {
-        var templatesProvider = World.Services?.Get<TemplatesProvider>();
+        TemplatesProvider templatesProvider = World.Services?.Get<TemplatesProvider>();
         if (templatesProvider == null)
         {
             Plugin.Log.LogWarning("TemplatesProvider is not available yet, can't find item details");

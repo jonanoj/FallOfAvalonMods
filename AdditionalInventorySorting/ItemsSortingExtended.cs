@@ -8,7 +8,10 @@ public static class ItemsSortingExtended
         nameof(ByWorthDesc),
         null, // This will be handled by the patch
         false,
-        "") { _name = LocStringUtils.New(nameof(ItemsSortingExtended), nameof(ByWorthDesc), "Price/Weight") };
+        "")
+    {
+        _name = LocStringUtils.New(nameof(ItemsSortingExtended), nameof(ByWorthDesc), "Price/Weight")
+    };
 
     public static readonly ItemsSorting ByWorthAsc = new(
         nameof(ByWorthAsc),

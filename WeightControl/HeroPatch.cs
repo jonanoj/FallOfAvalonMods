@@ -22,8 +22,8 @@ public class HeroPatch
         }
 
         // Remove the overencumbered status if it exists, the game recalculates the encumbrance status after this patch and will re-apply if needed
-        var characterStatuses = __instance.Statuses;
-        var status = characterStatuses.FirstFrom(overencumberedTemplate);
+        CharacterStatuses characterStatuses = __instance.Statuses;
+        Status status = characterStatuses.FirstFrom(overencumberedTemplate);
         if (status != null)
         {
 #if DEBUG
@@ -44,7 +44,7 @@ public class HeroPatch
     private static bool TryGetTemplate<T>(string guid, [MaybeNullWhen(false)] out T template)
         where T : Template
     {
-        var templatesProvider = World.Services?.Get<TemplatesProvider>();
+        TemplatesProvider templatesProvider = World.Services?.Get<TemplatesProvider>();
         if (templatesProvider == null)
         {
             Plugin.Log.LogWarning("TemplatesProvider is not available yet, can't find template details");

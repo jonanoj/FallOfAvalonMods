@@ -9,7 +9,7 @@ namespace FallDamageControl;
 [HarmonyPatch(typeof(FallDamageUtil), nameof(FallDamageUtil.DealFallDamage))]
 public class FallDamageUtilPatch
 {
-    public static void Prefix(ICharacter character, ref float damageToDeal)
+    public static void Prefix([HarmonyArgument(1)] ref float damageToDeal)
     {
         float originalFallDamage = damageToDeal;
 
@@ -20,7 +20,7 @@ public class FallDamageUtilPatch
             return;
         }
 
-        var hero = World.Any<Hero>();
+        Hero hero = World.Any<Hero>();
         if (hero == null)
         {
             Plugin.Log.LogWarning("Player not found, skipping fall damage adjustment.");
