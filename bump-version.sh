@@ -57,6 +57,8 @@ else
     echo "$modDir.csproj not found in $modDir"
 fi
 
+newVersionTag=$(echo "$modDir" | tr '[:upper:]' '[:lower:]')-$newVersion
+
 cat <<EOF
 
 ###########
@@ -66,6 +68,6 @@ cd "$modDir"
 git add PluginConsts.cs $modDir.csproj
 git commit -m 'Bump version to $newVersion'
 git push origin main
-git tag $newVersion
-git push origin $newVersion
+git tag $newVersionTag
+git push origin $newVersionTag
 EOF
