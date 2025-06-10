@@ -22,8 +22,8 @@ public class HeroPatch
         }
 
         // Remove the overencumbered status if it exists, the game recalculates the encumbrance status after this patch and will re-apply if needed
-        CharacterStatuses characterStatuses = __instance.Statuses;
-        Status status = characterStatuses.FirstFrom(overencumberedTemplate);
+        CharacterStatuses characterStatuses = __instance?.Statuses;
+        Status status = characterStatuses?.FirstFrom(overencumberedTemplate);
         if (status != null)
         {
 #if DEBUG
