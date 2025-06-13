@@ -4,16 +4,20 @@ namespace CustomKeybinds;
 
 public class PluginConfig
 {
-    // TODO: add config if needed
-    // public ConfigEntry<bool> MyValue { get; private set; }
+    public ConfigEntry<bool> IncludeDebugKeys { get; private set; }
 
     public PluginConfig(ConfigFile config)
     {
         config.SaveOnConfigSet = false;
         try
         {
-            // TODO: add config bindings as needed
-            // MyValue = config.Bind("Category", "ValueName", DefaultValue, "Description");
+            IncludeDebugKeys = config.Bind("Keybinds", "IncludeDebugKeys", false,
+                """
+                Set to true to allow configuring the cheat keys (a.k.a Debug keys)
+                Example debug keys:
+                  U - Give the player Gold, EXP, Ethereal Webs, etc.
+                  ` (Backquote) - Toggle god-mode
+                """);
         }
         finally
         {
