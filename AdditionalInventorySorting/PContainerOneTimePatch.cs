@@ -20,7 +20,9 @@ public class PContainerOneTimePatch
         HarmonyInstance.UnpatchSelf();
     }
 
+    private const float DefaultMinWidth = 400f;
     private const float DefaultMaxWidth = 600f;
+    private const float PatchedMinWidth = DefaultMinWidth * 1.375f;
     private const float PatchedMaxWidth = DefaultMaxWidth * 1.5f;
 
     [HarmonyPatch(typeof(PContainerUI), nameof(PContainerUI.OnFullyInitialized))]
@@ -44,6 +46,7 @@ public class PContainerOneTimePatch
             return;
         }
 
+        rootElement.style.minWidth = new StyleLength(PatchedMinWidth);
         rootElement.style.maxWidth = new StyleLength(PatchedMaxWidth);
         rootElement.style.width = StyleKeyword.Auto;
 
