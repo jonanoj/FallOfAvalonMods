@@ -21,7 +21,7 @@ public class MappingHelperPatch
         Plugin.Log.LogInfo(
             $"{nameof(ReInput.MappingHelper)}.{nameof(ReInput.MappingHelper.UserAssignableMapCategories)} Postfix");
 #endif
-        var mapCategories = __instance.MapCategories.TryCast<IEnumerable<InputMapCategory>>();
+        IEnumerable<InputMapCategory> mapCategories = __instance.MapCategories.TryCast<IEnumerable<InputMapCategory>>();
         if (mapCategories == null)
         {
             Plugin.Log.LogError($"{nameof(ReInput.MappingHelper)}.{nameof(ReInput.MappingHelper.MapCategories)}" +
@@ -31,14 +31,14 @@ public class MappingHelperPatch
 
 #if DEBUG
         Plugin.Log.LogInfo("All map categories:");
-        foreach (var category in mapCategories.ToList())
+        foreach (InputMapCategory category in mapCategories.ToList())
         {
             Plugin.Log.LogInfo(
                 $"Category - {category.name}, id={category.id}, descriptiveName={category.descriptiveName}");
         }
 
         Plugin.Log.LogInfo("Original map categories:");
-        foreach (var category in __result.ToList())
+        foreach (InputMapCategory category in __result.ToList())
         {
             Plugin.Log.LogInfo(
                 $"Category - {category.name}, id={category.id}, descriptiveName={category.descriptiveName}");
