@@ -6,7 +6,7 @@ namespace WeightControl;
 [HarmonyPatch(typeof(Item), nameof(Item.Weight), MethodType.Getter)]
 public class ItemWeightPatch
 {
-    public static void Postfix(Item __instance, ref float __result)
+    public static bool Prefix(Item __instance, ref float __result)
     {
         if (
             (__instance.IsAlchemyComponent && Plugin.PluginConfig.DisableAlchemyComponents.Value)
@@ -24,6 +24,9 @@ public class ItemWeightPatch
         )
         {
             __result = 0f;
+            return false;
         }
+
+        return true;
     }
 }
