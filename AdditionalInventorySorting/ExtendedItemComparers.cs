@@ -1,11 +1,12 @@
 using System;
+using System.Globalization;
 using Awaken.TG.Main.Heroes.Items;
 
 namespace AdditionalInventorySorting;
 
 public static class ExtendedItemComparers
 {
-    public static float GetPriceToWeightRatio(float price, float weight)
+    public static float GetPriceToWeightRatio(float price, float weight, int roundDigits = 2)
     {
         weight = MathF.Round(weight, 2);
 
@@ -15,7 +16,14 @@ public static class ExtendedItemComparers
         if (price == 0f)
             return float.PositiveInfinity;
 
-        return MathF.Round(price / weight, 2);
+        return MathF.Round(price / weight, roundDigits);
+    }
+
+    public static string GetPriceToWeightRatioString(float price, float weight, int roundDigits = 2)
+    {
+        float ratio = GetPriceToWeightRatio(price, weight, roundDigits);
+        string ratioText = float.IsInfinity(ratio) ? "∞" : ratio.ToString(CultureInfo.InvariantCulture);
+        return ratioText;
     }
 
     public static int ComparePriceToWeightDescending(Item item1, Item item2)

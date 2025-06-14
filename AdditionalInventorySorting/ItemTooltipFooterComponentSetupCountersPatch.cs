@@ -11,8 +11,7 @@ public class ItemTooltipFooterComponentSetupCountersPatch
     public static void Postfix(ItemTooltipFooterComponent __instance,
         [HarmonyArgument(0)] IItemDescriptor itemDescriptor)
     {
-        float ratio = ExtendedItemComparers.GetPriceToWeightRatio(itemDescriptor.Price, itemDescriptor.Weight);
-        string ratioText = float.IsInfinity(ratio) ? "∞" : ratio.ToString(CultureInfo.InvariantCulture);
+        string ratioText = ExtendedItemComparers.GetPriceToWeightRatioString(itemDescriptor.Price, itemDescriptor.Weight);
         __instance.priceText.text = $"({ratioText}) {itemDescriptor.Price}";
     }
 }
