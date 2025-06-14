@@ -31,6 +31,7 @@ public class Plugin : BasePlugin
         }
 
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
+        PContainerOneTimePatch.Patch();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
     }
@@ -40,6 +41,7 @@ public class Plugin : BasePlugin
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloading...");
 
         HarmonyInstance?.UnpatchSelf();
+        PContainerOneTimePatch.Unpatch();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
         return true;
