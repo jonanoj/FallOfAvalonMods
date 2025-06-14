@@ -4,5 +4,5 @@ public static class PluginConsts
 {
     public const string PLUGIN_GUID = "jonanoj.AdditionalInventorySorting";
     public const string PLUGIN_NAME = "AdditionalInventorySorting";
-    public const string PLUGIN_VERSION = "1.0.0";
+    public const string PLUGIN_VERSION = "1.1.0";
 }
