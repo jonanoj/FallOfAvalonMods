@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
@@ -11,6 +12,7 @@ public class Plugin : BasePlugin
 {
     internal static new ManualLogSource Log;
     internal static PluginConfig PluginConfig;
+    internal static LanguageConfig LanguageConfig;
 
     public Harmony HarmonyInstance { get; set; }
 
@@ -20,6 +22,9 @@ public class Plugin : BasePlugin
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
 
         PluginConfig = new PluginConfig(Config);
+        LanguageConfig = new LanguageConfig(new ConfigFile(
+            Utility.CombinePaths(Paths.ConfigPath, PluginConsts.PLUGIN_GUID + ".Language.cfg"), false,
+            MetadataHelper.GetMetadata(this)));
 
         if (!ItemsSortingExtended.InjectMembers())
         {

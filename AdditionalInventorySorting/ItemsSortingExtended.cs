@@ -4,10 +4,17 @@ namespace AdditionalInventorySorting;
 
 public static class ItemsSortingExtended
 {
-    public static readonly ItemsSorting ByWorthDesc = New(nameof(ByWorthDesc), "Price/Weight", false);
-    public static readonly ItemsSorting ByWorthAsc = New(nameof(ByWorthAsc), "Price/Weight (Ascending)", true);
-    public static readonly ItemsSorting ByTotalWeightDesc = New(nameof(ByTotalWeightDesc), "Total Weight", false);
-    public static readonly ItemsSorting AlphabeticalAsc = New(nameof(AlphabeticalAsc), "Name", false);
+    public static readonly ItemsSorting ByWorthDesc = New(nameof(ByWorthDesc),
+        Plugin.LanguageConfig.SortByWorthDescDisplayName.Value, false);
+
+    public static readonly ItemsSorting ByWorthAsc = New(nameof(ByWorthAsc),
+        Plugin.LanguageConfig.SortByWorthAscDisplayName.Value, true);
+
+    public static readonly ItemsSorting ByTotalWeightDesc = New(nameof(ByTotalWeightDesc),
+        Plugin.LanguageConfig.SortByTotalWeightDescDisplayName.Value, false);
+
+    public static readonly ItemsSorting AlphabeticalAsc = New(nameof(AlphabeticalAsc),
+        Plugin.LanguageConfig.SortByNameDisplayName.Value, false);
 
     private static ItemsSorting New(string name, string displayName, bool reverse)
     {
