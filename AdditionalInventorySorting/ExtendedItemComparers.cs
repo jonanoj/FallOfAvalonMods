@@ -46,4 +46,11 @@ public static class ExtendedItemComparers
         float y = GetPriceToWeightRatio(item2.Price, item2.Weight);
         return y.CompareTo(x);
     }
+
+    public static int CompareTotalWeightDescending(Item item1, Item item2)
+    {
+        float x = item1.Weight * item1.Quantity;
+        float y = item2.Weight * item2.Quantity;
+        return y.CompareTo(x);
+    }
 }

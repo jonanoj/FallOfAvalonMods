@@ -4,27 +4,22 @@ namespace AdditionalInventorySorting;
 
 public static class ItemsSortingExtended
 {
-    public static readonly ItemsSorting ByWorthDesc = new(
-        nameof(ByWorthDesc),
-        null, // This will be handled by the patch
-        false,
-        "")
-    {
-        _name = LocStringUtils.New(nameof(ItemsSortingExtended), nameof(ByWorthDesc), "Price/Weight")
-    };
+    public static readonly ItemsSorting ByWorthDesc = New(nameof(ByWorthDesc), "Price/Weight", false);
+    public static readonly ItemsSorting ByWorthAsc = New(nameof(ByWorthAsc), "Price/Weight (Ascending)", true);
+    public static readonly ItemsSorting ByTotalWeightDesc = New(nameof(ByTotalWeightDesc), "Total Weight", false);
 
-    public static readonly ItemsSorting ByWorthAsc = new(
-        nameof(ByWorthAsc),
-        null, // This will be handled by the patch
-        true,
-        "")
+    private static ItemsSorting New(string name, string displayName, bool reverse)
     {
-        _name = LocStringUtils.New(nameof(ItemsSortingExtended), nameof(ByWorthAsc), "Price/Weight (Ascending)")
-    };
+        return new ItemsSorting(name, null /* Implementation is injected through ItemsSortingPatch */, reverse, "")
+        {
+            _name = LocStringUtils.New(nameof(ItemsSortingExtended), name, displayName)
+        };
+    }
 
     public static bool InjectMembers()
     {
-        return RichEnumPatcher.AddOrUpdateMember(nameof(ByWorthDesc), ByWorthDesc) &&
-               RichEnumPatcher.AddOrUpdateMember(nameof(ByWorthAsc), ByWorthAsc);
+        return RichEnumPatcher.AddOrUpdateMember(ByWorthDesc) &&
+               RichEnumPatcher.AddOrUpdateMember(ByWorthAsc) &&
+               RichEnumPatcher.AddOrUpdateMember(ByTotalWeightDesc);
     }
 }

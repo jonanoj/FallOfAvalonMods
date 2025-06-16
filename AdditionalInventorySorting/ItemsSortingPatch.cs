@@ -10,42 +10,9 @@ public class ItemsSortingPatch
 {
     public static bool InjectComparers()
     {
-        ItemsSorting[] additionalComparers = [ItemsSortingExtended.ByWorthDesc, ItemsSortingExtended.ByWorthAsc];
-
-        bool success = true;
-        if (!ListInjection.TryInsertAfter(ItemsSorting.BaseComparers, RichEnumComparer, ItemsSorting.ByPriceDescending,
-                additionalComparers))
-        {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.BaseComparers)}");
-        }
-
-        if (!ListInjection.TryInsertAfter(ItemsSorting.AllComparers, RichEnumComparer, ItemsSorting.ByPriceDescending,
-                additionalComparers))
-        {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.AllComparers)}");
-        }
-
-        if (!ListInjection.TryInsertAfter(ItemsSorting.ArmorComparers, RichEnumComparer,
-                ItemsSorting.ByPriceDescending,
-                additionalComparers))
-        {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.ArmorComparers)}");
-        }
-
-        if (!ListInjection.TryInsertAfter(ItemsSorting.WeaponComparers, RichEnumComparer,
-                ItemsSorting.ByPriceDescending,
-                additionalComparers))
-        {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.WeaponComparers)}");
-        }
+        bool success = AddComparerAfter(ItemsSorting.ByPriceDescending,
+                           [ItemsSortingExtended.ByWorthDesc, ItemsSortingExtended.ByWorthAsc]) &&
+                       AddComparerAfter(ItemsSorting.ByWeightDescending, [ItemsSortingExtended.ByTotalWeightDesc]);
 
 #if DEBUG
         foreach (ItemsSorting comparer in ItemsSorting.AllComparers)
@@ -53,6 +20,43 @@ public class ItemsSortingPatch
             Plugin.Log.LogInfo($"Got comparer: {comparer.EnumName} - name={comparer.Name}, locID={comparer._name.ID}");
         }
 #endif
+
+        return success;
+    }
+
+    private static bool AddComparerAfter(ItemsSorting afterValue, ItemsSorting[] additionalComparers)
+    {
+        bool success = true;
+        if (!ListInjection.TryInsertAfter(ItemsSorting.BaseComparers, RichEnumComparer, afterValue,
+                additionalComparers))
+        {
+            success = false;
+            Plugin.Log.LogWarning(
+                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.BaseComparers)}");
+        }
+
+        if (!ListInjection.TryInsertAfter(ItemsSorting.AllComparers, RichEnumComparer, afterValue, additionalComparers))
+        {
+            success = false;
+            Plugin.Log.LogWarning(
+                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.AllComparers)}");
+        }
+
+        if (!ListInjection.TryInsertAfter(ItemsSorting.ArmorComparers, RichEnumComparer, afterValue,
+                additionalComparers))
+        {
+            success = false;
+            Plugin.Log.LogWarning(
+                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.ArmorComparers)}");
+        }
+
+        if (!ListInjection.TryInsertAfter(ItemsSorting.WeaponComparers, RichEnumComparer, afterValue,
+                additionalComparers))
+        {
+            success = false;
+            Plugin.Log.LogWarning(
+                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.WeaponComparers)}");
+        }
 
         return success;
     }
@@ -73,6 +77,9 @@ public class ItemsSortingPatch
                 return false;
             case nameof(ItemsSortingExtended.ByWorthAsc):
                 __result = ExtendedItemComparers.ComparePriceToWeightDescending(x, y) * -1;
+                return false;
+            case nameof(ItemsSortingExtended.ByTotalWeightDesc):
+                __result = ExtendedItemComparers.CompareTotalWeightDescending(x, y);
                 return false;
         }
 
