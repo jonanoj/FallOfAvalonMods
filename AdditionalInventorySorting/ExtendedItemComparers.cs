@@ -53,4 +53,9 @@ public static class ExtendedItemComparers
         float y = item2.Weight * item2.Quantity;
         return y.CompareTo(x);
     }
+
+    public static int CompareItemName(Item item1, Item item2)
+    {
+        return string.Compare(item1.DisplayName, item2.DisplayName, StringComparison.CurrentCulture);
+    }
 }

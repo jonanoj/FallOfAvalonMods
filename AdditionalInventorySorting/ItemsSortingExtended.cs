@@ -7,6 +7,7 @@ public static class ItemsSortingExtended
     public static readonly ItemsSorting ByWorthDesc = New(nameof(ByWorthDesc), "Price/Weight", false);
     public static readonly ItemsSorting ByWorthAsc = New(nameof(ByWorthAsc), "Price/Weight (Ascending)", true);
     public static readonly ItemsSorting ByTotalWeightDesc = New(nameof(ByTotalWeightDesc), "Total Weight", false);
+    public static readonly ItemsSorting AlphabeticalAsc = New(nameof(AlphabeticalAsc), "Name", false);
 
     private static ItemsSorting New(string name, string displayName, bool reverse)
     {
@@ -20,6 +21,7 @@ public static class ItemsSortingExtended
     {
         return RichEnumPatcher.AddOrUpdateMember(ByWorthDesc) &&
                RichEnumPatcher.AddOrUpdateMember(ByWorthAsc) &&
-               RichEnumPatcher.AddOrUpdateMember(ByTotalWeightDesc);
+               RichEnumPatcher.AddOrUpdateMember(ByTotalWeightDesc) &&
+               RichEnumPatcher.AddOrUpdateMember(AlphabeticalAsc);
     }
 }

@@ -12,7 +12,8 @@ public class ItemsSortingPatch
     {
         bool success = AddComparerAfter(ItemsSorting.ByPriceDescending,
                            [ItemsSortingExtended.ByWorthDesc, ItemsSortingExtended.ByWorthAsc]) &&
-                       AddComparerAfter(ItemsSorting.ByWeightDescending, [ItemsSortingExtended.ByTotalWeightDesc]);
+                       AddComparerAfter(ItemsSorting.ByWeightDescending, [ItemsSortingExtended.ByTotalWeightDesc]) &&
+                       AddComparerAfter(ItemsSorting.ByNewestDescending, [ItemsSortingExtended.AlphabeticalAsc]);
 
 #if DEBUG
         foreach (ItemsSorting comparer in ItemsSorting.AllComparers)
@@ -80,6 +81,9 @@ public class ItemsSortingPatch
                 return false;
             case nameof(ItemsSortingExtended.ByTotalWeightDesc):
                 __result = ExtendedItemComparers.CompareTotalWeightDescending(x, y);
+                return false;
+            case nameof(ItemsSortingExtended.AlphabeticalAsc):
+                __result = ExtendedItemComparers.CompareItemName(x, y);
                 return false;
         }
 
