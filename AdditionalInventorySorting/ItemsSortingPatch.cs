@@ -15,7 +15,7 @@ public class ItemsSortingPatch
         List<ItemsSorting> worthSort = [];
         if (config.SortByWorthDescEnabled.Value) worthSort.Add(ItemsSortingExtended.ByWorthDesc);
         if (config.SortByWorthAscEnabled.Value) worthSort.Add(ItemsSortingExtended.ByWorthAsc);
-        bool byWorth = worthSort.Count == 0 || AddComparerAfter(ItemsSorting.ByPriceDescending, worthSort.ToArray());
+        bool byWorth = worthSort.Count == 0 || AddComparerAfter(ItemsSorting.ByPriceDescending, [.. worthSort]);
 
         bool byTotalWeight = !config.SortByTotalWeightDescEnabled.Value ||
                              AddComparerAfter(ItemsSorting.ByWeightDescending, ItemsSortingExtended.ByTotalWeightDesc);
@@ -23,7 +23,7 @@ public class ItemsSortingPatch
                       AddComparerAfter(ItemsSorting.ByNewestDescending, ItemsSortingExtended.AlphabeticalAsc);
 
 #if DEBUG
-        void DumpComparers(string name, Il2CppSystem.Collections.Generic.List<ItemsSorting> comparers)
+        static void DumpComparers(string name, Il2CppSystem.Collections.Generic.List<ItemsSorting> comparers)
         {
             Plugin.Log.LogInfo($"Comparers in {name}:");
             foreach (ItemsSorting comparer in comparers)
