@@ -10,6 +10,7 @@ namespace AdditionalInventorySorting;
 public class Plugin : BasePlugin
 {
     internal static new ManualLogSource Log;
+    internal static PluginConfig PluginConfig;
 
     public Harmony HarmonyInstance { get; set; }
 
@@ -17,6 +18,8 @@ public class Plugin : BasePlugin
     {
         Log = base.Log;
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
+
+        PluginConfig = new PluginConfig(Config);
 
         if (!ItemsSortingExtended.InjectMembers())
         {

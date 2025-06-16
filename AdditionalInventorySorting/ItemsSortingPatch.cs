@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 using Awaken.TG.Main.Heroes.Items;
 using HarmonyLib;
@@ -10,22 +10,38 @@ public class ItemsSortingPatch
 {
     public static bool InjectComparers()
     {
-        bool success = AddComparerAfter(ItemsSorting.ByPriceDescending,
-                           [ItemsSortingExtended.ByWorthDesc, ItemsSortingExtended.ByWorthAsc]) &&
-                       AddComparerAfter(ItemsSorting.ByWeightDescending, [ItemsSortingExtended.ByTotalWeightDesc]) &&
-                       AddComparerAfter(ItemsSorting.ByNewestDescending, [ItemsSortingExtended.AlphabeticalAsc]);
+        PluginConfig config = Plugin.PluginConfig;
+
+        List<ItemsSorting> worthSort = [];
+        if (config.SortByWorthDescEnabled.Value) worthSort.Add(ItemsSortingExtended.ByWorthDesc);
+        if (config.SortByWorthAscEnabled.Value) worthSort.Add(ItemsSortingExtended.ByWorthAsc);
+        bool byWorth = worthSort.Count == 0 || AddComparerAfter(ItemsSorting.ByPriceDescending, worthSort.ToArray());
+
+        bool byTotalWeight = !config.SortByTotalWeightDescEnabled.Value ||
+                             AddComparerAfter(ItemsSorting.ByWeightDescending, ItemsSortingExtended.ByTotalWeightDesc);
+        bool byName = !config.SortByNameEnabled.Value ||
+                      AddComparerAfter(ItemsSorting.ByNewestDescending, ItemsSortingExtended.AlphabeticalAsc);
 
 #if DEBUG
-        foreach (ItemsSorting comparer in ItemsSorting.AllComparers)
+        void DumpComparers(string name, Il2CppSystem.Collections.Generic.List<ItemsSorting> comparers)
         {
-            Plugin.Log.LogInfo($"Got comparer: {comparer.EnumName} - name={comparer.Name}, locID={comparer._name.ID}");
+            Plugin.Log.LogInfo($"Comparers in {name}:");
+            foreach (ItemsSorting comparer in comparers)
+            {
+                Plugin.Log.LogInfo($" {comparer.EnumName} - name={comparer._name.Fallback}, locID={comparer._name.ID}");
+            }
         }
+
+        DumpComparers(nameof(ItemsSorting.BaseComparers), ItemsSorting.BaseComparers);
+        DumpComparers(nameof(ItemsSorting.AllComparers), ItemsSorting.AllComparers);
+        DumpComparers(nameof(ItemsSorting.WeaponComparers), ItemsSorting.WeaponComparers);
+        DumpComparers(nameof(ItemsSorting.ArmorComparers), ItemsSorting.ArmorComparers);
 #endif
 
-        return success;
+        return byWorth && byTotalWeight && byName;
     }
 
-    private static bool AddComparerAfter(ItemsSorting afterValue, ItemsSorting[] additionalComparers)
+    private static bool AddComparerAfter(ItemsSorting afterValue, params ItemsSorting[] additionalComparers)
     {
         bool success = true;
         if (!ListInjection.TryInsertAfter(ItemsSorting.BaseComparers, RichEnumComparer, afterValue,
