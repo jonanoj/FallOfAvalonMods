@@ -34,7 +34,16 @@ public class Plugin : BasePlugin
         }
 
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
-        PContainerOneTimePatch.Patch();
+        if (PluginConfig.ShowWorthInInventory.Value)
+        {
+            ItemTooltipFooterComponentSetupCountersPatch.Patch();
+        }
+
+        if (PluginConfig.ShowInfoInLoot.Value)
+        {
+            PContainerOneTimePatch.Patch();
+            PContainerElementPatch.Patch();
+        }
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
     }
@@ -44,7 +53,9 @@ public class Plugin : BasePlugin
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloading...");
 
         HarmonyInstance?.UnpatchSelf();
+        ItemTooltipFooterComponentSetupCountersPatch.Unpatch();
         PContainerOneTimePatch.Unpatch();
+        PContainerElementPatch.Unpatch();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
         return true;

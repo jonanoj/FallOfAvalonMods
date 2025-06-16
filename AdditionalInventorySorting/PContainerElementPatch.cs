@@ -5,9 +5,20 @@ using HarmonyLib;
 
 namespace AdditionalInventorySorting;
 
-[HarmonyPatch]
 public class PContainerElementPatch
 {
+    private static readonly Harmony HarmonyInstance = new(nameof(PContainerElementPatch));
+
+    public static void Patch()
+    {
+        HarmonyInstance.PatchAll(typeof(PContainerElementPatch));
+    }
+
+    public static void Unpatch()
+    {
+        HarmonyInstance.UnpatchSelf();
+    }
+
     [HarmonyPatch(typeof(PContainerElement), nameof(PContainerElement.SetData))]
     [HarmonyPostfix]
     public static void PContainerElementSetDataPostfix(PContainerElement __instance, [HarmonyArgument(1)] Item item)
@@ -32,8 +43,10 @@ public class PContainerElementPatch
             return $"({item.Price}$)";
         }
 
-        // Round to 0 digits to save as much width as possible
-        return
-            $"({item.Price}$/{item.Weight}kg = {ExtendedItemComparers.GetPriceToWeightRatioString(item.Price, item.Weight, 0)})";
+
+        string pricePerWeight = $"{item.Price}$/{item.Weight}kg";
+        return Plugin.PluginConfig.ShowWorthInLoot.Value
+            ? $"({pricePerWeight} = {ExtendedItemComparers.GetPriceToWeightRatioString(item.Price, item.Weight, 0)})" // Round to 0 digits to add as little width as possible
+            : $"({pricePerWeight})";
     }
 }

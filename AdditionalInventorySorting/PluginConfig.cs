@@ -9,6 +9,11 @@ public class PluginConfig
     public ConfigEntry<bool> SortByWorthAscEnabled { get; private set; }
     public ConfigEntry<bool> SortByTotalWeightDescEnabled { get; private set; }
 
+    public ConfigEntry<bool> ShowWorthInInventory { get; private set; }
+
+    public ConfigEntry<bool> ShowInfoInLoot { get; private set; }
+    public ConfigEntry<bool> ShowWorthInLoot { get; private set; }
+
     public PluginConfig(ConfigFile config)
     {
         config.SaveOnConfigSet = false;
@@ -23,6 +28,15 @@ public class PluginConfig
                 "Add sorting by price/weight ratio ascending (smaller values first)");
             SortByTotalWeightDescEnabled = config.Bind(itemSorting, nameof(SortByTotalWeightDescEnabled), true,
                 "Add sorting by total weight of items in slot/stack");
+
+            ShowWorthInInventory = config.Bind("Inventory", nameof(ShowWorthInInventory), true,
+                "Show price/weight ratio next to the item price");
+
+            const string loot = "Loot";
+            ShowInfoInLoot = config.Bind(loot, nameof(ShowInfoInLoot), true,
+                "Show price and weight in the loot window");
+            ShowWorthInLoot = config.Bind(loot, nameof(ShowWorthInLoot), true,
+                $"Show price/weight ratio next to the item price in the loot window (will be ignored if {nameof(ShowInfoInLoot)} is set to false)");
         }
         finally
         {
