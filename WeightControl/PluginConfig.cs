@@ -26,7 +26,7 @@ public class PluginConfig
             DisableAlchemyComponents = config.Bind("Weight", "AlchemyComponents", true,
                 "true = Disable weight for alchemy components, false = keep vanilla weight behavior.");
             DisableConsumables = config.Bind("Weight", "Consumables", true,
-                "tsrue = Disable weight for consumables, false = keep vanilla weight behavior.");
+                "true = Disable weight for consumables, false = keep vanilla weight behavior.");
             DisablePlainFood = config.Bind("Weight", "Food", true,
                 "true = Disable weight for food, false = keep vanilla weight behavior.");
             DisablePotions = config.Bind("Weight", "Potions", true,
