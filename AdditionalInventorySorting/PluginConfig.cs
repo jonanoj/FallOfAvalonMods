@@ -35,7 +35,7 @@ public class PluginConfig
             const string loot = "Loot";
             ShowInfoInLoot = config.Bind(loot, nameof(ShowInfoInLoot), true,
                 "Show price and weight in the loot window");
-            ShowWorthInLoot = config.Bind(loot, nameof(ShowWorthInLoot), true,
+            ShowWorthInLoot = config.Bind(loot, nameof(ShowWorthInLoot), false,
                 $"Show price/weight ratio next to the item price in the loot window (will be ignored if {nameof(ShowInfoInLoot)} is set to false)");
         }
         finally
