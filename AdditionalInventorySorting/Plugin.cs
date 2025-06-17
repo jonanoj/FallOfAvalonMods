@@ -46,7 +46,6 @@ public class Plugin : BasePlugin
 
         if (PluginConfig.ShowInfoInLoot.Value)
         {
-            PContainerOneTimePatch.Patch();
             PContainerElementPatch.Patch();
         }
 
@@ -59,7 +58,6 @@ public class Plugin : BasePlugin
 
         HarmonyInstance?.UnpatchSelf();
         ItemTooltipFooterComponentSetupCountersPatch.Unpatch();
-        PContainerOneTimePatch.Unpatch();
         PContainerElementPatch.Unpatch();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
