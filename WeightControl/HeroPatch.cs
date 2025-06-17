@@ -53,7 +53,7 @@ public class HeroPatch
         }
 
         template = templatesProvider.Get<T>(guid);
-        if (template == null)
+        if (template is null || !template)
         {
             Plugin.Log.LogWarning($"{typeof(T).Name} template with GUID {guid} not found.");
             return false;
