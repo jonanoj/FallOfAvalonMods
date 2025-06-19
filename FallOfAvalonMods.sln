@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdditionalInventorySorting"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomKeybinds", "CustomKeybinds\CustomKeybinds.csproj", "{A2ADED86-643B-419E-B0A1-7CA353467420}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigherWeightLimit", "HigherWeightLimit\HigherWeightLimit.csproj", "{F440A02E-E3FB-4B17-A0A6-9CEF6563A6C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{A2ADED86-643B-419E-B0A1-7CA353467420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2ADED86-643B-419E-B0A1-7CA353467420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2ADED86-643B-419E-B0A1-7CA353467420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F440A02E-E3FB-4B17-A0A6-9CEF6563A6C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F440A02E-E3FB-4B17-A0A6-9CEF6563A6C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F440A02E-E3FB-4B17-A0A6-9CEF6563A6C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F440A02E-E3FB-4B17-A0A6-9CEF6563A6C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
