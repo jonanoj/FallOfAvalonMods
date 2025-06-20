@@ -4,16 +4,15 @@ namespace HigherWeightLimit;
 
 public class PluginConfig
 {
-    // TODO: add config if needed
-    // public ConfigEntry<bool> MyValue { get; private set; }
+    public ConfigEntry<int> WeightMultiplier { get; private set; }
 
     public PluginConfig(ConfigFile config)
     {
         config.SaveOnConfigSet = false;
         try
         {
-            // TODO: add config bindings as needed
-            // MyValue = config.Bind("Category", "ValueName", DefaultValue, "Description");
+            WeightMultiplier = config.Bind("Weight", nameof(WeightMultiplier), 25,
+                "Multiplies your weight by the given value");
         }
         finally
         {
