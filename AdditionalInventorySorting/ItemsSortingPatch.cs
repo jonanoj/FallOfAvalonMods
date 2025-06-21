@@ -87,6 +87,21 @@ public class ItemsSortingPatch
         [HarmonyArgument(0)] Item x,
         [HarmonyArgument(1)] Item y)
     {
+        EquipSortModes equipSortMode = Plugin.PluginConfig.EquipSortMode.Value;
+        if (equipSortMode != EquipSortModes.Vanilla)
+        {
+            int xPriority = GetItemPriority(x);
+            int yPriority = GetItemPriority(y);
+
+            if (xPriority != yPriority)
+            {
+                __result = equipSortMode == EquipSortModes.EquippedFirst
+                    ? xPriority.CompareTo(yPriority)
+                    : yPriority.CompareTo(xPriority);
+                return false;
+            }
+        }
+
         switch (__instance.EnumName)
         {
             case nameof(ItemsSortingExtended.ByWorthDesc):
@@ -104,5 +119,14 @@ public class ItemsSortingPatch
         }
 
         return true;
+    }
+
+    private static int GetItemPriority(Item item)
+    {
+        if (item.IsEquipped)
+            return 0;
+        if (item.IsInLoadout())
+            return 1;
+        return 2;
     }
 }

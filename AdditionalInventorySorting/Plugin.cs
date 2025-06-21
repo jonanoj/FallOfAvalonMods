@@ -49,6 +49,11 @@ public class Plugin : BasePlugin
             PContainerElementPatch.Patch();
         }
 
+        if (PluginConfig.EquipSortMode.Value != EquipSortModes.Vanilla)
+        {
+            ItemLoadoutCache.Patch();
+        }
+
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
     }
 
@@ -59,6 +64,7 @@ public class Plugin : BasePlugin
         HarmonyInstance?.UnpatchSelf();
         ItemTooltipFooterComponentSetupCountersPatch.Unpatch();
         PContainerElementPatch.Unpatch();
+        ItemLoadoutCache.Unpatch();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
         return true;

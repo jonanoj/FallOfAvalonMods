@@ -9,6 +9,8 @@ public class PluginConfig
     public ConfigEntry<bool> SortByWorthAscEnabled { get; private set; }
     public ConfigEntry<bool> SortByTotalWeightDescEnabled { get; private set; }
 
+    public ConfigEntry<EquipSortModes> EquipSortMode { get; private set; }
+
     public ConfigEntry<bool> ShowWorthInInventory { get; private set; }
 
     public ConfigEntry<bool> ShowInfoInLoot { get; private set; }
@@ -28,6 +30,16 @@ public class PluginConfig
                 "Add sorting by price/weight ratio ascending (smaller values first)");
             SortByTotalWeightDescEnabled = config.Bind(itemSorting, nameof(SortByTotalWeightDescEnabled), true,
                 "Add sorting by total weight of items in slot/stack");
+
+            EquipSortMode = config.Bind(itemSorting, nameof(EquipSortMode), EquipSortModes.EquippedFirst,
+                $"""
+                 Allows sorting equipped items separately from unequipped items.
+                 This setting applies to *all* item sort types - including both base game and those added by this mod (Newest, Price, Weight, Price/Weight, etc.)
+                 Possible values:
+                   {nameof(EquipSortModes.EquippedFirst)} - Equipped items appear before everything else.
+                   {nameof(EquipSortModes.EquippedLast)}  - Equipped items appear after everything else.
+                   {nameof(EquipSortModes.Vanilla)}       - Same as the base game, equipped items aren't treated any differently.
+                 """);
 
             ShowWorthInInventory = config.Bind("Inventory", nameof(ShowWorthInInventory), true,
                 "Show price/weight ratio next to the item price");
