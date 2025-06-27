@@ -8,8 +8,12 @@ public class LanguageConfig
     public ConfigEntry<string> SortByWorthDescDisplayName { get; private set; }
     public ConfigEntry<string> SortByWorthAscDisplayName { get; private set; }
     public ConfigEntry<string> SortByTotalWeightDescDisplayName { get; private set; }
+
     public ConfigEntry<string> ReadableSubTypeUnreadDisplayName { get; private set; }
     public ConfigEntry<string> ReadableSubTypeReadDisplayName { get; private set; }
+    public ConfigEntry<string> PotionSubTypeHealthDisplayName { get; private set; }
+    public ConfigEntry<string> PotionSubTypeManaDisplayName { get; private set; }
+    public ConfigEntry<string> PotionSubTypeStaminaDisplayName { get; private set; }
 
 
     public LanguageConfig(ConfigFile config)
@@ -31,10 +35,20 @@ public class LanguageConfig
 
             ReadableSubTypeUnreadDisplayName = config.Bind(language, nameof(ReadableSubTypeUnreadDisplayName),
                 "Unread",
-                "Display name to show for Readable SubType Unread, you can modify this if you're playing in a different language");
+                "Display name to show for Readable sub-tab Unread, you can modify this if you're playing in a different language");
             ReadableSubTypeReadDisplayName = config.Bind(language, nameof(ReadableSubTypeReadDisplayName),
                 "Read",
-                "Display name to show for Readable SubType Read, you can modify this if you're playing in a different language");
+                "Display name to show for Readable sub-tab Read, you can modify this if you're playing in a different language");
+
+            PotionSubTypeHealthDisplayName = config.Bind(language, nameof(PotionSubTypeHealthDisplayName),
+                "Health",
+                "Display name to show for Potion sub-tab Health, you can modify this if you're playing in a different language");
+            PotionSubTypeManaDisplayName = config.Bind(language, nameof(PotionSubTypeManaDisplayName),
+                "Mana",
+                "Display name to show for Potion sub-tab Mana, you can modify this if you're playing in a different language");
+            PotionSubTypeStaminaDisplayName = config.Bind(language, nameof(PotionSubTypeStaminaDisplayName),
+                "Stamina",
+                "Display name to show for Potion sub-tab Stamina, you can modify this if you're playing in a different language");
         }
         finally
         {

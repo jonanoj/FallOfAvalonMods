@@ -65,9 +65,14 @@ public class Plugin : BasePlugin
             Log.LogError("Failed to inject ItemsTabType RichEnum extensions");
         }
 
-        if (PluginConfig.InventoryTabsReadUnreadEnabled.Value)
+        if (PluginConfig.InventoryTabsReadableEnabled.Value)
         {
-            ItemsTabTypeInjector.AddReadUnreadTabs();
+            ItemsTabTypeInjector.AddReadableSubTabs();
+        }
+
+        if (PluginConfig.InventoryTabsPotionEnabled.Value)
+        {
+            ItemsTabTypeInjector.AddPotionSubTabs();
         }
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");

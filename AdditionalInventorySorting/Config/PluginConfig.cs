@@ -12,7 +12,8 @@ public class PluginConfig
 
     public ConfigEntry<EquipSortModes> EquipSortMode { get; private set; }
 
-    public ConfigEntry<bool> InventoryTabsReadUnreadEnabled { get; private set; }
+    public ConfigEntry<bool> InventoryTabsReadableEnabled { get; private set; }
+    public ConfigEntry<bool> InventoryTabsPotionEnabled { get; private set; }
 
     public ConfigEntry<bool> ShowWorthInInventory { get; private set; }
 
@@ -45,10 +46,19 @@ public class PluginConfig
                  """);
 
             const string inventoryTabs = "InventoryTabs";
-            InventoryTabsReadUnreadEnabled = config.Bind(inventoryTabs, nameof(InventoryTabsReadUnreadEnabled), true,
+            InventoryTabsReadableEnabled = config.Bind(inventoryTabs, nameof(InventoryTabsReadableEnabled), true,
                 """
                 Add Unread/Read sub-tabs to the readable items tab in your inventory.
                 Note that sub-tabs aren't updated when you read an item, so you will have to switch tabs to see the change.
+                """);
+            InventoryTabsPotionEnabled = config.Bind(inventoryTabs, nameof(InventoryTabsPotionEnabled), true,
+                """
+                Add Potion sub-tabs to the potions tab in your inventory.
+                Added tabs are:
+                 - Health
+                 - Mana
+                 - Stamina
+                 - Other
                 """);
 
             const string inventory = "Inventory";
