@@ -6,7 +6,7 @@ using Awaken.TG.MVC.Elements;
 using HarmonyLib;
 using Il2CppSystem.Collections.Generic;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Inventory.Sorting.Equippable;
 
 // There's already an ItemUtils.IsUsedInLoadout method, but it is VERY inefficient and causes sorting to take a LOT of time
 // So I implemented this basic (and lazy) cache instead to keep sorting as fast as possible

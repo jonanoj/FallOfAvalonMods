@@ -1,6 +1,7 @@
+using AdditionalInventorySorting.Utils;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Inventory.Sorting;
 
 public static class ItemsSortingExtended
 {

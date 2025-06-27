@@ -1,7 +1,7 @@
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.Tabs;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 
-namespace AdditionalInventorySorting.TabTypes;
+namespace AdditionalInventorySorting.Inventory.Tabs;
 
 public static class ItemsTabTypeInjector
 {

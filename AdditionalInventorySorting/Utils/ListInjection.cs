@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Il2CppSystem.Collections.Generic;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Utils;
 
 public static class ListInjection
 {

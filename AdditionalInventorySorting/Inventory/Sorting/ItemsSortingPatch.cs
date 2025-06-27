@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using AdditionalInventorySorting.Config;
+using AdditionalInventorySorting.Inventory.Sorting.Equippable;
+using AdditionalInventorySorting.Utils;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 using Awaken.TG.Main.Heroes.Items;
 using HarmonyLib;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Inventory.Sorting;
 
 [HarmonyPatch]
 public class ItemsSortingPatch

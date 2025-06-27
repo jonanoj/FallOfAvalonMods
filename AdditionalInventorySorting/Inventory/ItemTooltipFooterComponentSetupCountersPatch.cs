@@ -1,8 +1,9 @@
+using AdditionalInventorySorting.Inventory.Sorting;
 using Awaken.TG.Main.Heroes.Items.Tooltips.Components;
 using Awaken.TG.Main.Heroes.Items.Tooltips.Descriptors;
 using HarmonyLib;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Inventory;
 
 public class ItemTooltipFooterComponentSetupCountersPatch
 {

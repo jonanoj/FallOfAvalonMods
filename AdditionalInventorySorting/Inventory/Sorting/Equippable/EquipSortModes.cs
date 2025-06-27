@@ -1,4 +1,4 @@
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Inventory.Sorting.Equippable;
 
 public enum EquipSortModes
 {

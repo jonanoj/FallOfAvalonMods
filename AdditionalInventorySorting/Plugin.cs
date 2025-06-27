@@ -1,5 +1,10 @@
 ﻿using System.Reflection;
-using AdditionalInventorySorting.TabTypes;
+using AdditionalInventorySorting.Config;
+using AdditionalInventorySorting.Inventory;
+using AdditionalInventorySorting.Inventory.Sorting;
+using AdditionalInventorySorting.Inventory.Sorting.Equippable;
+using AdditionalInventorySorting.Inventory.Tabs;
+using AdditionalInventorySorting.Loot;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;

@@ -1,10 +1,11 @@
+using AdditionalInventorySorting.Utils;
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.Tabs;
 using Awaken.TG.Main.Heroes.Items;
 using Il2CppInterop.Runtime;
 using Il2CppSystem;
 
-namespace AdditionalInventorySorting.TabTypes;
+namespace AdditionalInventorySorting.Inventory.Tabs;
 
 public static class ItemsTabTypeExtended
 {

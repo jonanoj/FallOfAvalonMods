@@ -1,6 +1,6 @@
 using BepInEx.Configuration;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Config;
 
 public class LanguageConfig
 {

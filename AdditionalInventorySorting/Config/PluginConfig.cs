@@ -1,6 +1,7 @@
+using AdditionalInventorySorting.Inventory.Sorting.Equippable;
 using BepInEx.Configuration;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Config;
 
 public class PluginConfig
 {

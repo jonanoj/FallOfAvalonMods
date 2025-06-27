@@ -1,9 +1,10 @@
+using AdditionalInventorySorting.Inventory.Sorting;
 using Awaken.TG.Main.Heroes.Items;
 using Awaken.TG.Main.Locations.Containers;
 using Awaken.TG.Main.UIToolkit;
 using HarmonyLib;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Loot;
 
 public class PContainerElementPatch
 {

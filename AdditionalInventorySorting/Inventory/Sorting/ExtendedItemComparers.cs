@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Awaken.TG.Main.Heroes.Items;
 
-namespace AdditionalInventorySorting;
+namespace AdditionalInventorySorting.Inventory.Sorting;
 
 public static class ExtendedItemComparers
 {
