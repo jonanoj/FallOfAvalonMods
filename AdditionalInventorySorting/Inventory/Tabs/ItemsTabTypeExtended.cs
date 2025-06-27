@@ -9,10 +9,10 @@ namespace AdditionalInventorySorting.Inventory.Tabs;
 
 public static class ItemsTabTypeExtended
 {
-    public static readonly ItemsTabType Unread = New(nameof(Unread), CheckRead(false),
+    public static readonly ItemsTabType ReadableUnread = New(nameof(ReadableUnread), CheckRead(false),
         Plugin.LanguageConfig.ReadableSubTypeUnreadDisplayName.Value);
 
-    public static readonly ItemsTabType Read = New(nameof(Read), CheckRead(true),
+    public static readonly ItemsTabType ReadableRead = New(nameof(ReadableRead), CheckRead(true),
         Plugin.LanguageConfig.ReadableSubTypeReadDisplayName.Value);
 
     private static ItemsTabType New(string name, Func<Item, bool> filter, string displayName) =>
@@ -21,8 +21,8 @@ public static class ItemsTabTypeExtended
 
     public static bool InjectMembers()
     {
-        return RichEnumPatcher.AddOrUpdateMember(Unread) &&
-               RichEnumPatcher.AddOrUpdateMember(Read);
+        return RichEnumPatcher.AddOrUpdateMember(ReadableUnread) &&
+               RichEnumPatcher.AddOrUpdateMember(ReadableRead);
     }
 
     private static Func<Item, bool> CheckRead(bool readable)

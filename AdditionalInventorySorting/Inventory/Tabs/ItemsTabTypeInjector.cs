@@ -14,8 +14,8 @@ public static class ItemsTabTypeInjector
         }
 
         ItemsTabType.Readable._SubTabs_k__BackingField = new Il2CppReferenceArray<ItemsTabType>([
-            ItemsTabTypeExtended.Unread,
-            ItemsTabTypeExtended.Read
+            ItemsTabTypeExtended.ReadableUnread,
+            ItemsTabTypeExtended.ReadableRead
         ]);
     }
 }
