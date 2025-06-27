@@ -11,6 +11,8 @@ public class PluginConfig
 
     public ConfigEntry<EquipSortModes> EquipSortMode { get; private set; }
 
+    public ConfigEntry<bool> InventoryTabsReadUnreadEnabled { get; private set; }
+
     public ConfigEntry<bool> ShowWorthInInventory { get; private set; }
 
     public ConfigEntry<bool> ShowInfoInLoot { get; private set; }
@@ -41,7 +43,15 @@ public class PluginConfig
                    {nameof(EquipSortModes.Vanilla)}       - Same as the base game, equipped items aren't treated any differently.
                  """);
 
-            ShowWorthInInventory = config.Bind("Inventory", nameof(ShowWorthInInventory), true,
+            const string inventoryTabs = "InventoryTabs";
+            InventoryTabsReadUnreadEnabled = config.Bind(inventoryTabs, nameof(InventoryTabsReadUnreadEnabled), true,
+                """
+                Add Unread/Read sub-tabs to the readable items tab in your inventory.
+                Note that sub-tabs aren't updated when you read an item, so you will have to switch tabs to see the change.
+                """);
+
+            const string inventory = "Inventory";
+            ShowWorthInInventory = config.Bind(inventory, nameof(ShowWorthInInventory), true,
                 "Show price/weight ratio next to the item price");
 
             const string loot = "Loot";

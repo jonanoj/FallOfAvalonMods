@@ -8,6 +8,8 @@ public class LanguageConfig
     public ConfigEntry<string> SortByWorthDescDisplayName { get; private set; }
     public ConfigEntry<string> SortByWorthAscDisplayName { get; private set; }
     public ConfigEntry<string> SortByTotalWeightDescDisplayName { get; private set; }
+    public ConfigEntry<string> ReadableSubTypeUnreadDisplayName { get; private set; }
+    public ConfigEntry<string> ReadableSubTypeReadDisplayName { get; private set; }
 
 
     public LanguageConfig(ConfigFile config)
@@ -26,6 +28,13 @@ public class LanguageConfig
             SortByTotalWeightDescDisplayName = config.Bind(language, nameof(SortByTotalWeightDescDisplayName),
                 "Total Weight",
                 "Display name to show for Total Weight sort type, you can modify this if you're playing in a different language");
+
+            ReadableSubTypeUnreadDisplayName = config.Bind(language, nameof(ReadableSubTypeUnreadDisplayName),
+                "Unread",
+                "Display name to show for Readable SubType Unread, you can modify this if you're playing in a different language");
+            ReadableSubTypeReadDisplayName = config.Bind(language, nameof(ReadableSubTypeReadDisplayName),
+                "Read",
+                "Display name to show for Readable SubType Read, you can modify this if you're playing in a different language");
         }
         finally
         {

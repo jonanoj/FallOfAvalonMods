@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using AdditionalInventorySorting.TabTypes;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -52,6 +53,16 @@ public class Plugin : BasePlugin
         if (PluginConfig.EquipSortMode.Value != EquipSortModes.Vanilla)
         {
             ItemLoadoutCache.Patch();
+        }
+
+        if (!ItemsTabTypeExtended.InjectMembers())
+        {
+            Log.LogError("Failed to inject ItemsTabType RichEnum extensions");
+        }
+
+        if (PluginConfig.InventoryTabsReadUnreadEnabled.Value)
+        {
+            ItemsTabTypeInjector.AddReadUnreadTabs();
         }
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
