@@ -58,6 +58,7 @@ public class Plugin : BasePlugin
         if (PluginConfig.EquipSortMode.Value != EquipSortModes.Vanilla)
         {
             ItemLoadoutCache.Patch();
+            ItemsSortingPatch.Patch();
         }
 
         if (!ItemsTabTypeExtended.InjectMembers())
@@ -86,6 +87,7 @@ public class Plugin : BasePlugin
         ItemTooltipFooterComponentSetupCountersPatch.Unpatch();
         PContainerElementPatch.Unpatch();
         ItemLoadoutCache.Unpatch();
+        ItemsSortingPatch.Unpatch();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
         return true;

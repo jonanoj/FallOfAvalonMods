@@ -1,13 +1,23 @@
-using AdditionalInventorySorting.Inventory.Sorting.Equippable;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 using Awaken.TG.Main.Heroes.Items;
 using HarmonyLib;
 
-namespace AdditionalInventorySorting.Inventory.Sorting;
+namespace AdditionalInventorySorting.Inventory.Sorting.Equippable;
 
-[HarmonyPatch]
 public class ItemsSortingPatch
 {
+    private static readonly Harmony HarmonyInstance = new(nameof(ItemsSortingPatch));
+
+    public static void Patch()
+    {
+        HarmonyInstance.PatchAll(typeof(ItemsSortingPatch));
+    }
+
+    public static void Unpatch()
+    {
+        HarmonyInstance.UnpatchSelf();
+    }
+
     [HarmonyPatch(typeof(ItemsSorting), nameof(ItemsSorting.Compare), typeof(Item), typeof(Item))]
     [HarmonyPrefix]
     public static bool ItemsSortingComparePrefix(ItemsSorting __instance,
