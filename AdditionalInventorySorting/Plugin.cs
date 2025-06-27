@@ -38,7 +38,7 @@ public class Plugin : BasePlugin
             return;
         }
 
-        if (!ItemsSortingPatch.InjectComparers())
+        if (!ItemsSortingInjector.InjectComparers())
         {
             Log.LogError("Failed to inject custom comparers to ItemSorting list");
             return;
