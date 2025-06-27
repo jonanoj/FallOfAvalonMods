@@ -105,22 +105,6 @@ public class ItemsSortingPatch
             }
         }
 
-        switch (__instance.EnumName)
-        {
-            case nameof(ItemsSortingExtended.ByWorthDesc):
-                __result = ExtendedItemComparers.ComparePriceToWeightDescending(x, y);
-                return false;
-            case nameof(ItemsSortingExtended.ByWorthAsc):
-                __result = ExtendedItemComparers.ComparePriceToWeightDescending(x, y) * -1;
-                return false;
-            case nameof(ItemsSortingExtended.ByTotalWeightDesc):
-                __result = ExtendedItemComparers.CompareTotalWeightDescending(x, y);
-                return false;
-            case nameof(ItemsSortingExtended.AlphabeticalAsc):
-                __result = ExtendedItemComparers.CompareItemName(x, y);
-                return false;
-        }
-
         return true;
     }
 
