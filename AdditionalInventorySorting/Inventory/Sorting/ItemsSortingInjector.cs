@@ -20,6 +20,9 @@ public static class ItemsSortingInjector
                              AddComparerAfter(ItemsSorting.ByWeightDescending, ItemsSortingExtended.ByTotalWeightDesc);
         bool byName = !config.SortByNameEnabled.Value ||
                       AddComparerAfter(ItemsSorting.ByNewestDescending, ItemsSortingExtended.AlphabeticalAsc);
+        bool byArmor = !config.SortByArmorWorthDescEnabled.Value ||
+                       AddComparerAfter(ItemsSorting.ArmorComparers, nameof(ItemsSorting.ArmorComparers),
+                           ItemsSorting.ByArmorDescending, ItemsSortingExtended.ByArmorWorthDesc);
 
 #if DEBUG
         static void DumpComparers(string name, Il2CppSystem.Collections.Generic.List<ItemsSorting> comparers)
@@ -37,44 +40,32 @@ public static class ItemsSortingInjector
         DumpComparers(nameof(ItemsSorting.ArmorComparers), ItemsSorting.ArmorComparers);
 #endif
 
-        return byWorth && byTotalWeight && byName;
+        return byWorth && byTotalWeight && byName && byArmor;
     }
 
     private static bool AddComparerAfter(ItemsSorting afterValue, params ItemsSorting[] additionalComparers)
     {
-        bool success = true;
-        if (!ListInjection.TryInsertAfter(ItemsSorting.BaseComparers, RichEnumComparer, afterValue,
-                additionalComparers))
+        return AddComparerAfter(ItemsSorting.BaseComparers, nameof(ItemsSorting.BaseComparers), afterValue,
+                   additionalComparers) &&
+               AddComparerAfter(ItemsSorting.AllComparers, nameof(ItemsSorting.AllComparers), afterValue,
+                   additionalComparers) &&
+               AddComparerAfter(ItemsSorting.ArmorComparers, nameof(ItemsSorting.ArmorComparers), afterValue,
+                   additionalComparers) &&
+               AddComparerAfter(ItemsSorting.WeaponComparers, nameof(ItemsSorting.WeaponComparers), afterValue,
+                   additionalComparers);
+    }
+
+    private static bool AddComparerAfter(Il2CppSystem.Collections.Generic.List<ItemsSorting> comparersList,
+        string comparerListName, ItemsSorting afterValue, params ItemsSorting[] additionalComparers)
+    {
+        if (ListInjection.TryInsertAfter(comparersList, RichEnumComparer, afterValue, additionalComparers))
         {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.BaseComparers)}");
+            return true;
         }
 
-        if (!ListInjection.TryInsertAfter(ItemsSorting.AllComparers, RichEnumComparer, afterValue, additionalComparers))
-        {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.AllComparers)}");
-        }
-
-        if (!ListInjection.TryInsertAfter(ItemsSorting.ArmorComparers, RichEnumComparer, afterValue,
-                additionalComparers))
-        {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.ArmorComparers)}");
-        }
-
-        if (!ListInjection.TryInsertAfter(ItemsSorting.WeaponComparers, RichEnumComparer, afterValue,
-                additionalComparers))
-        {
-            success = false;
-            Plugin.Log.LogWarning(
-                $"Failed to add custom {nameof(ItemsSorting)} to {nameof(ItemsSorting.WeaponComparers)}");
-        }
-
-        return success;
+        Plugin.Log.LogWarning(
+            $"Failed to add custom {nameof(ItemsSorting)} to {comparerListName}");
+        return false;
     }
 
     private static bool RichEnumComparer(ItemsSorting x, ItemsSorting y) => x.CompareTo(y) == 0;

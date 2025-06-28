@@ -9,8 +9,7 @@ namespace AdditionalInventorySorting.Inventory.Sorting;
 public static class ItemsSortingExtended
 {
     public static readonly ItemsSorting ByWorthDesc = New(nameof(ByWorthDesc),
-        Plugin.LanguageConfig.SortByWorthDescDisplayName.Value, ExtendedItemComparers.ComparePriceToWeightDescending,
-        false);
+        Plugin.LanguageConfig.SortByWorthDescDisplayName.Value, ExtendedItemComparers.ComparePriceToWeightDescending);
 
     public static readonly ItemsSorting ByWorthAsc = New(nameof(ByWorthAsc),
         Plugin.LanguageConfig.SortByWorthAscDisplayName.Value, ExtendedItemComparers.ComparePriceToWeightDescending,
@@ -18,12 +17,17 @@ public static class ItemsSortingExtended
 
     public static readonly ItemsSorting ByTotalWeightDesc = New(nameof(ByTotalWeightDesc),
         Plugin.LanguageConfig.SortByTotalWeightDescDisplayName.Value,
-        ExtendedItemComparers.CompareTotalWeightDescending, false);
+        ExtendedItemComparers.CompareTotalWeightDescending);
 
     public static readonly ItemsSorting AlphabeticalAsc = New(nameof(AlphabeticalAsc),
-        Plugin.LanguageConfig.SortByNameDisplayName.Value, ExtendedItemComparers.CompareItemName, false);
+        Plugin.LanguageConfig.SortByNameDisplayName.Value, ExtendedItemComparers.CompareItemName);
 
-    private static ItemsSorting New(string name, string displayName, Func<Item, Item, int> comparer, bool reverse)
+    public static readonly ItemsSorting ByArmorWorthDesc = New(nameof(ByArmorWorthDesc),
+        Plugin.LanguageConfig.SortByArmorWorthDescDisplayName.Value,
+        ExtendedItemComparers.CompareArmorToWeightDescending);
+
+    private static ItemsSorting New(string name, string displayName, Func<Item, Item, int> comparer,
+        bool reverse = false)
     {
         return new ItemsSorting(name, ConvertComparer(comparer), reverse, "")
         {
@@ -36,7 +40,8 @@ public static class ItemsSortingExtended
         return RichEnumPatcher.AddOrUpdateMember(ByWorthDesc) &&
                RichEnumPatcher.AddOrUpdateMember(ByWorthAsc) &&
                RichEnumPatcher.AddOrUpdateMember(ByTotalWeightDesc) &&
-               RichEnumPatcher.AddOrUpdateMember(AlphabeticalAsc);
+               RichEnumPatcher.AddOrUpdateMember(AlphabeticalAsc) &&
+               RichEnumPatcher.AddOrUpdateMember(ByArmorWorthDesc);
     }
 
     private static ItemsSorting.Comparer ConvertComparer(Func<Item, Item, int> comparer)

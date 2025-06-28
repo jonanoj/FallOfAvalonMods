@@ -9,6 +9,7 @@ public class PluginConfig
     public ConfigEntry<bool> SortByWorthDescEnabled { get; private set; }
     public ConfigEntry<bool> SortByWorthAscEnabled { get; private set; }
     public ConfigEntry<bool> SortByTotalWeightDescEnabled { get; private set; }
+    public ConfigEntry<bool> SortByArmorWorthDescEnabled { get; private set; }
 
     public ConfigEntry<EquipSortModes> EquipSortMode { get; private set; }
 
@@ -35,6 +36,8 @@ public class PluginConfig
                 "Add sorting by price/weight ratio ascending (smaller values first)");
             SortByTotalWeightDescEnabled = config.Bind(itemSorting, nameof(SortByTotalWeightDescEnabled), true,
                 "Add sorting by total weight of items in slot/stack");
+            SortByArmorWorthDescEnabled = config.Bind(itemSorting, nameof(SortByArmorWorthDescEnabled), true,
+                "Add sorting by armor/weight ratio descending (bigger values first)");
 
             EquipSortMode = config.Bind(itemSorting, nameof(EquipSortMode), EquipSortModes.EquippedFirst,
                 $"""

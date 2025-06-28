@@ -26,10 +26,22 @@ public static class ExtendedItemComparers
         return ratioText;
     }
 
-    public static int ComparePriceToWeightDescending(Item item1, Item item2)
+    public static int ComparePriceToWeightDescending(Item item1, Item item2) =>
+        CompareItemRatioDescending(item1, item2, ItemPrice);
+
+    private static float ItemPrice(Item item) => item.Price;
+
+    public static int CompareArmorToWeightDescending(Item item1, Item item2) =>
+        CompareItemRatioDescending(item1, item2, ItemArmor);
+
+    private static float ItemArmor(Item item) => item.Stat(ItemStatType.ItemArmor)?.ModifiedValue ?? 0f;
+
+    private static int CompareItemRatioDescending(Item item1, Item item2, Func<Item, float> valueGetter)
     {
-        bool zeroWeight1 = item1.Weight == 0f;
-        bool zeroWeight2 = item2.Weight == 0f;
+        float item1Weight = item1.Weight;
+        float item2Weight = item2.Weight;
+        bool zeroWeight1 = item1Weight == 0f;
+        bool zeroWeight2 = item2Weight == 0f;
 
         // Show items with weight first
         if (!zeroWeight1 && zeroWeight2)
@@ -37,13 +49,16 @@ public static class ExtendedItemComparers
         if (zeroWeight1 && !zeroWeight2)
             return 1;
 
-        // Both weightless - sort by price descending
-        if (zeroWeight1 && zeroWeight2)
-            return item2.Price.CompareTo(item1.Price);
+        float item1Value = valueGetter(item1);
+        float item2Value = valueGetter(item2);
 
-        // Both have weight: sort by price-to-weight ratio descending
-        float x = GetPriceToWeightRatio(item1.Price, item1.Weight);
-        float y = GetPriceToWeightRatio(item2.Price, item2.Weight);
+        // Both weightless - fallback to raw value descending
+        if (zeroWeight1 && zeroWeight2)
+            return item2Value.CompareTo(item1Value);
+
+        // Both have weight: sort by ratio descending
+        float x = GetPriceToWeightRatio(item1Value, item1Weight);
+        float y = GetPriceToWeightRatio(item2Value, item2Weight);
         return y.CompareTo(x);
     }
 
