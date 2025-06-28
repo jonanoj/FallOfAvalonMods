@@ -20,8 +20,7 @@ public class ItemsSortingPatch
 
     [HarmonyPatch(typeof(ItemsSorting), nameof(ItemsSorting.Compare), typeof(Item), typeof(Item))]
     [HarmonyPrefix]
-    public static bool ItemsSortingComparePrefix(ItemsSorting __instance,
-        ref int __result,
+    public static bool ItemsSortingComparePrefix(ref int __result,
         [HarmonyArgument(0)] Item x,
         [HarmonyArgument(1)] Item y)
     {
