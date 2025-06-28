@@ -19,6 +19,21 @@ public static class ItemsTabTypeInjector
         ]);
     }
 
+    public static void AddRecipesSubTabs()
+    {
+        if (ItemsTabType.Recipes.SubTabs != null)
+        {
+            Plugin.Log.LogWarning("Recipes sub-tabs already exist, not adding new tabs");
+            return;
+        }
+
+        ItemsTabType.Recipes._SubTabs_k__BackingField = new Il2CppReferenceArray<ItemsTabType>([
+            ItemsTabTypeExtended.ReadableUnread,
+            ItemsTabTypeExtended.ReadableRead
+        ]);
+    }
+
+
     public static void AddPotionSubTabs()
     {
         if (ItemsTabType.Potion.SubTabs != null)

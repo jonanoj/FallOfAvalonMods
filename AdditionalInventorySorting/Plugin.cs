@@ -71,6 +71,11 @@ public class Plugin : BasePlugin
             ItemsTabTypeInjector.AddReadableSubTabs();
         }
 
+        if (PluginConfig.InventoryTabsRecipesEnabled.Value)
+        {
+            ItemsTabTypeInjector.AddRecipesSubTabs();
+        }
+
         if (PluginConfig.InventoryTabsPotionEnabled.Value)
         {
             ItemsTabTypeInjector.AddPotionSubTabs();

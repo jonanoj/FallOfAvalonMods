@@ -48,7 +48,7 @@ public static class ItemsTabTypeExtended
                RichEnumPatcher.AddOrUpdateMember(PotionStamina);
     }
 
-    private static Func<Item, bool> CheckRead(bool readable)
+    private static Func<Item, bool> CheckRead(bool read)
     {
         return DelegateSupport.ConvertDelegate<Func<Item, bool>>((Item item) =>
         {
@@ -57,14 +57,14 @@ public static class ItemsTabTypeExtended
                 return false;
             }
 
-            var heroReadables = Hero.Current.Element<HeroReadables>();
+            HeroReadables heroReadables = Hero.Current.Element<HeroReadables>();
             if (heroReadables == null)
             {
                 Plugin.Log.LogError("HeroReadables is null, can't check if item is readable");
                 return false;
             }
 
-            return readable
+            return read
                 ? heroReadables.WasTemplateRead(item.Template)
                 : !heroReadables.WasTemplateRead(item.Template);
         });

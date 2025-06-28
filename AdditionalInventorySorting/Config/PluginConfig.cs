@@ -13,6 +13,7 @@ public class PluginConfig
     public ConfigEntry<EquipSortModes> EquipSortMode { get; private set; }
 
     public ConfigEntry<bool> InventoryTabsReadableEnabled { get; private set; }
+    public ConfigEntry<bool> InventoryTabsRecipesEnabled { get; private set; }
     public ConfigEntry<bool> InventoryTabsPotionEnabled { get; private set; }
 
     public ConfigEntry<bool> ShowWorthInInventory { get; private set; }
@@ -49,6 +50,11 @@ public class PluginConfig
             InventoryTabsReadableEnabled = config.Bind(inventoryTabs, nameof(InventoryTabsReadableEnabled), true,
                 """
                 Add Unread/Read sub-tabs to the readable items tab in your inventory.
+                Note that sub-tabs aren't updated when you read an item, so you will have to switch tabs to see the change.
+                """);
+            InventoryTabsRecipesEnabled = config.Bind(inventoryTabs, nameof(InventoryTabsRecipesEnabled), true,
+                """
+                Add Unread/Read sub-tabs to the recipes tab in your inventory.
                 Note that sub-tabs aren't updated when you read an item, so you will have to switch tabs to see the change.
                 """);
             InventoryTabsPotionEnabled = config.Bind(inventoryTabs, nameof(InventoryTabsPotionEnabled), true,
