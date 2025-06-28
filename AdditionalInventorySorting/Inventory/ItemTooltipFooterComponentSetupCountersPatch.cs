@@ -25,7 +25,7 @@ public class ItemTooltipFooterComponentSetupCountersPatch
         [HarmonyArgument(0)] IItemDescriptor itemDescriptor)
     {
         string ratioText =
-            ExtendedItemComparers.GetPriceToWeightRatioString(itemDescriptor.Price, itemDescriptor.Weight);
+            ExtendedItemComparers.GetValueToRatioString(itemDescriptor.Price, itemDescriptor.Weight);
         __instance.priceText.text = $"({ratioText}) {itemDescriptor.Price}";
     }
 }

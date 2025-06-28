@@ -47,7 +47,7 @@ public class PContainerElementPatch
 
         string pricePerWeight = $"{item.Price}$/{item.Weight}kg";
         return Plugin.PluginConfig.ShowWorthInLoot.Value
-            ? $"({pricePerWeight} = {ExtendedItemComparers.GetPriceToWeightRatioString(item.Price, item.Weight, 0)})" // Round to 0 digits to add as little width as possible
+            ? $"({pricePerWeight} = {ExtendedItemComparers.GetValueToRatioString(item.Price, item.Weight, 0)})" // Round to 0 digits to add as little width as possible
             : $"({pricePerWeight})";
     }
 }

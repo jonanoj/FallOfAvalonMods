@@ -6,22 +6,22 @@ namespace AdditionalInventorySorting.Inventory.Sorting;
 
 public static class ExtendedItemComparers
 {
-    public static float GetPriceToWeightRatio(float price, float weight, int roundDigits = 2)
+    private static float GetValueToWeightRatio(float value, float weight, int roundDigits = 2)
     {
         weight = MathF.Round(weight, 2);
 
-        if (price == 0f && weight == 0f)
+        if (value == 0f && weight == 0f)
             return 0f;
 
-        if (price == 0f)
+        if (value == 0f)
             return float.PositiveInfinity;
 
-        return MathF.Round(price / weight, roundDigits);
+        return MathF.Round(value / weight, roundDigits);
     }
 
-    public static string GetPriceToWeightRatioString(float price, float weight, int roundDigits = 2)
+    public static string GetValueToRatioString(float value, float weight, int roundDigits = 2)
     {
-        float ratio = GetPriceToWeightRatio(price, weight, roundDigits);
+        float ratio = GetValueToWeightRatio(value, weight, roundDigits);
         string ratioText = float.IsInfinity(ratio) ? "∞" : ratio.ToString(CultureInfo.InvariantCulture);
         return ratioText;
     }
@@ -57,8 +57,8 @@ public static class ExtendedItemComparers
             return item2Value.CompareTo(item1Value);
 
         // Both have weight: sort by ratio descending
-        float x = GetPriceToWeightRatio(item1Value, item1Weight);
-        float y = GetPriceToWeightRatio(item2Value, item2Weight);
+        float x = GetValueToWeightRatio(item1Value, item1Weight);
+        float y = GetValueToWeightRatio(item2Value, item2Weight);
         return y.CompareTo(x);
     }
 
