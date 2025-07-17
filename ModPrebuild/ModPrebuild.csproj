@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <IsPackable>false</IsPackable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RootNamespace>PreBuildTasks</RootNamespace>
+  </PropertyGroup>
+
+  <Target Name="CopyManagedDllsToLib" BeforeTargets="PrepareForBuild">
+    <MakeDir Directories="$(SolutionDir)lib"/>
+    <ItemGroup>
+      <ManagedDlls Include="$(ManagedDir)*.dll" Exclude="$(ManagedDir)System*.dll"/>
+    </ItemGroup>
+    <Error Condition="!Exists('$(ManagedDir)')" Text="Game managed DLL directory does not exist: $(ManagedDir)"/>
+    <Error Condition="@(ManagedDlls->Count()) == 0" Text="No managed DLLs found in: $(ManagedDir)"/>
+    <Message Importance="high" Text="Copying managed DLLs from: $(ManagedDir) to $(SolutionDir)lib"/>
+    <Copy SourceFiles="@(ManagedDlls)" DestinationFolder="$(SolutionDir)lib"/>
+  </Target>
+</Project>
+

@@ -11,22 +11,42 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
-    <PackageReference Include="BepInEx.Core" Version="5.*" />
-    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-    <PackageReference Include="UnityEngine.Modules" Version="5.6.0" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+    <PackageReference Include="BepInEx.Core" Version="5.*"/>
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*"/>
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="..\lib\*.dll">
+    <ProjectReference Include="..\ModPrebuild\ModPrebuild.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3" PrivateAssets="all"/>
+
+    <Reference Include="..\lib\*.dll" Exclude="..\lib\TG.Main.dll">
       <HintPath>..\lib\$(AssemblyName).dll</HintPath>
       <Private>false</Private>
     </Reference>
+
+    <Reference Include="..\lib\TG.Main.dll">
+      <HintPath>..\lib\$(AssemblyName).dll</HintPath>
+      <Private>false</Private>
+      <Publicize>true</Publicize>
+    </Reference>
   </ItemGroup>
+
+  <Target Name="CopyToBepInExPlugins" AfterTargets="Build">
+    <ItemGroup>
+      <BuiltDlls Include="$(OutputPath)$(AssemblyName).dll"/>
+    </ItemGroup>
+    <Error Condition="!Exists('$(BepInExPluginsDir)')" Text="BepInEx plugins directory does not exist: $(BepInExPluginsDir)"/>
+    <Copy SourceFiles="@(BuiltDlls)" DestinationFolder="$(BepInExPluginsDir)" SkipUnchangedFiles="true"/>
+    <Message Importance="high" Text="Copied $(MSBuildProjectName).dll to $(BepInExPluginsDir)"/>
+  </Target>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <DebugType>embedded</DebugType>

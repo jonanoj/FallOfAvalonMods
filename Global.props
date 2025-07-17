@@ -1,9 +1,0 @@
-<Project>
-  <PropertyGroup>
-    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\Tainted Grail FoA\</GameDir>
-    <GameDataDir>$(GameDir)Fall of Avalon_Data\</GameDataDir>
-    <ManagedDir>$(GameDataDir)Managed\</ManagedDir>
-    <BepInExPluginsDir>$(GameDir)BepInEx\plugins\</BepInExPluginsDir>
-  </PropertyGroup>
-</Project>
-
