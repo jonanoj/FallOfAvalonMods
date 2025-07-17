@@ -15,9 +15,7 @@ public class ItemWeightPatch
     [HarmonyPrefix]
     public static bool ItemWeightPrefix(Item __instance, ref float __result)
     {
-        if ((__instance.IsEquippable && !__instance.IsEquipped && Plugin.PluginConfig.DisableUnequipped.Value) ||
-            (__instance.IsArrow && Plugin.PluginConfig.DisableArrows.Value) ||
-            (__instance.IsPotion && Plugin.PluginConfig.DisablePotions.Value))
+        if (__instance.IsEquippable && !__instance.IsEquipped && Plugin.PluginConfig.DisableUnequipped.Value)
         {
             __result = 0f;
             return false;
@@ -28,7 +26,7 @@ public class ItemWeightPatch
 
     [HarmonyPatch(typeof(Hero), nameof(Hero.OnFullyInitialized))]
     [HarmonyPrefix]
-    public static void HeroOnFullyInitializedPrefix()
+    public static void HeroOnFullyInitializedPrefix(Hero __instance)
     {
         TemplatesProvider templatesProvider = World.Services.Get<TemplatesProvider>();
         if (templatesProvider == null)
