@@ -3,7 +3,7 @@ using HarmonyLib;
 
 namespace FastTravelAlways;
 
-[HarmonyPatch(typeof(MapUI), "OnInitialize")]
+[HarmonyPatch(typeof(MapUI), nameof(MapUI.AfterViewSpawned))]
 public class MapUIPatch
 {
     public static void Postfix(MapUI __instance)
