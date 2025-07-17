@@ -5,7 +5,6 @@ using Awaken.TG.Main.Heroes.Stats;
 using Awaken.TG.Main.Heroes.Stats.Tweaks;
 using Awaken.TG.MVC;
 using HarmonyLib;
-using Il2CppSystem;
 
 namespace HigherWeightLimit;
 
@@ -37,8 +36,7 @@ public class HeroRpgStatsPatch
 
         tweakSystem.AddTweak(tweakSystem.Tweak(
             encumbranceLimit,
-            StatTweak.Multi(encumbranceLimit, weightMultiplier,
-                new Nullable<TweakPriority>(TweakPriority.Multiply)).Cast<ITweaker>(),
+            StatTweak.Multi(encumbranceLimit, weightMultiplier, TweakPriority.Multiply),
             TweakPriority.Multiply));
 
         Stat armorWeightMultiplier = hero.HeroStats.ArmorWeightMultiplier;
@@ -46,8 +44,7 @@ public class HeroRpgStatsPatch
 
         tweakSystem.AddTweak(tweakSystem.Tweak(
             armorWeightMultiplier,
-            StatTweak.Multi(armorWeightMultiplier, weightMultiplier,
-                new Nullable<TweakPriority>(TweakPriority.Multiply)).Cast<ITweaker>(),
+            StatTweak.Multi(armorWeightMultiplier, weightMultiplier, TweakPriority.Multiply),
             TweakPriority.Multiply));
 
         ArmorWeight armorWeight = hero.TryGetElement<ArmorWeight>();

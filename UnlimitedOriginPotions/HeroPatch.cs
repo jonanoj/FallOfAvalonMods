@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Awaken.TG.Main.Character;
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.Items;
 using Awaken.TG.Main.Templates;
 using Awaken.TG.MVC;
 using HarmonyLib;
-using Il2CppSystem.Linq;
 
 namespace UnlimitedOriginPotions;
 
