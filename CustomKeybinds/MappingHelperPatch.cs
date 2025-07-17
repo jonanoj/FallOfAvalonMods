@@ -1,9 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using Awaken.TG.Main.Utility;
 using HarmonyLib;
-using Il2CppInterop.Runtime;
-using Il2CppSystem;
-using Il2CppSystem.Collections.Generic;
-using Il2CppSystem.Linq;
 using Rewired;
 
 namespace CustomKeybinds;
@@ -21,7 +19,7 @@ public class MappingHelperPatch
         Plugin.Log.LogInfo(
             $"{nameof(ReInput.MappingHelper)}.{nameof(ReInput.MappingHelper.UserAssignableMapCategories)} Postfix");
 #endif
-        IEnumerable<InputMapCategory> mapCategories = __instance.MapCategories.TryCast<IEnumerable<InputMapCategory>>();
+        IEnumerable<InputMapCategory> mapCategories = __instance.MapCategories;
         if (mapCategories == null)
         {
             Plugin.Log.LogError($"{nameof(ReInput.MappingHelper)}.{nameof(ReInput.MappingHelper.MapCategories)}" +
@@ -51,9 +49,7 @@ public class MappingHelperPatch
         }
         else
         {
-            __result = mapCategories.Where(
-                DelegateSupport.ConvertDelegate<Func<InputMapCategory, bool>>((InputMapCategory category) =>
-                    category.name != nameof(KeyBindings.Debug)));
+            __result = mapCategories.Where(category => category.name != nameof(KeyBindings.Debug));
         }
     }
 }

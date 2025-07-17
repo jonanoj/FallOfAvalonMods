@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.Statuses;
 using Awaken.TG.Main.Templates;
@@ -12,7 +11,7 @@ public class HeroPatch
 {
     private const string OverencumberedGuid = "61d1845f37ba56a4096a46408ce80ee3"; // Status_Overencumbered
 
-    [HarmonyPatch(typeof(Hero), nameof(Hero.OnFullyInitialized))]
+    [HarmonyPatch(typeof(Hero), "OnFullyInitialized")]
     [HarmonyPostfix]
     public static void OnFullyInitializedPostfix(Hero __instance)
     {
@@ -23,12 +22,13 @@ public class HeroPatch
 
         // Remove the overencumbered status if it exists, the game recalculates the encumbrance status after this patch and will re-apply if needed
         CharacterStatuses characterStatuses = __instance?.Statuses;
-        Status status = characterStatuses?.FirstFrom(overencumberedTemplate);
+        Status status =
+            characterStatuses?.AllStatuses.FirstOrDefault(status => status.Template == overencumberedTemplate);
         if (status != null)
         {
 #if DEBUG
             Plugin.Log.LogInfo(
-                $"{nameof(Hero)}.{nameof(Hero.OnFullyInitialized)}: Overencumbered status exists, removing it");
+                $"{nameof(Hero)}.OnFullyInitialized: Overencumbered status exists, removing it");
 #endif
             characterStatuses.RemoveStatus(overencumberedTemplate);
         }
@@ -36,12 +36,12 @@ public class HeroPatch
         else
         {
             Plugin.Log.LogInfo(
-                $"{nameof(Hero)}.{nameof(Hero.OnFullyInitialized)}: Overencumbered status does not exist");
+                $"{nameof(Hero)}.OnFullyInitialized: Overencumbered status does not exist");
         }
 #endif
     }
 
-    private static bool TryGetTemplate<T>(string guid, [MaybeNullWhen(false)] out T template)
+    private static bool TryGetTemplate<T>(string guid, out T template)
         where T : Template
     {
         TemplatesProvider templatesProvider = World.Services?.Get<TemplatesProvider>();
