@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
+using BepInEx;
+using BepInEx.Configuration;
+using BepInEx.Logging;
+using HarmonyLib;
 using ImprovedInventory.Config;
 using ImprovedInventory.Inventory;
 using ImprovedInventory.Inventory.Sorting;
 using ImprovedInventory.Inventory.Sorting.Equippable;
 using ImprovedInventory.Inventory.Tabs;
 using ImprovedInventory.Loot;
-using BepInEx;
-using BepInEx.Configuration;
-using BepInEx.Logging;
-using HarmonyLib;
 
 namespace ImprovedInventory;
 

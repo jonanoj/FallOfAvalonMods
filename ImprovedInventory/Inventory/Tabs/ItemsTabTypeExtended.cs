@@ -1,10 +1,10 @@
 using System;
-using ImprovedInventory.Utils;
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.Tabs;
 using Awaken.TG.Main.Heroes.Items;
 using Awaken.TG.Main.Scenes.SceneConstructors;
 using Awaken.TG.Main.Templates;
+using ImprovedInventory.Utils;
 
 namespace ImprovedInventory.Inventory.Tabs;
 

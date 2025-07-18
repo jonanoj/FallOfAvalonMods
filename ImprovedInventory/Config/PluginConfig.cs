@@ -1,5 +1,5 @@
-using ImprovedInventory.Inventory.Sorting.Equippable;
 using BepInEx.Configuration;
+using ImprovedInventory.Inventory.Sorting.Equippable;
 
 namespace ImprovedInventory.Config;
 

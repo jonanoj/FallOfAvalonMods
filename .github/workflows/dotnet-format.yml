@@ -24,4 +24,5 @@ jobs:
       - name: Run dotnet format
         run: |
           dotnet format --version
+          dotnet restore
           dotnet format --verify-no-changes --severity info

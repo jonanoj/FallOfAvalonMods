@@ -1,5 +1,5 @@
-using ImprovedInventory.Utils;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
+using ImprovedInventory.Utils;
 
 namespace ImprovedInventory.Inventory.Sorting;
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 using ImprovedInventory.Config;
 using ImprovedInventory.Utils;
-using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 
 namespace ImprovedInventory.Inventory.Sorting;
 

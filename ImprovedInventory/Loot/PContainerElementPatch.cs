@@ -1,8 +1,8 @@
-using ImprovedInventory.Inventory.Sorting;
 using Awaken.TG.Main.Heroes.Items;
 using Awaken.TG.Main.Locations.Containers;
 using Awaken.TG.Main.UIToolkit;
 using HarmonyLib;
+using ImprovedInventory.Inventory.Sorting;
 
 namespace ImprovedInventory.Loot;
 

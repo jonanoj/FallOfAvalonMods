@@ -1,7 +1,7 @@
-using ImprovedInventory.Inventory.Sorting;
 using Awaken.TG.Main.Heroes.Items.Tooltips.Components;
 using Awaken.TG.Main.Heroes.Items.Tooltips.Descriptors;
 using HarmonyLib;
+using ImprovedInventory.Inventory.Sorting;
 
 namespace ImprovedInventory.Inventory;
 
