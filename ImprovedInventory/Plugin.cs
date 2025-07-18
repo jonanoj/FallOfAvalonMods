@@ -1,16 +1,16 @@
 ﻿using System.Reflection;
-using AdditionalInventorySorting.Config;
-using AdditionalInventorySorting.Inventory;
-using AdditionalInventorySorting.Inventory.Sorting;
-using AdditionalInventorySorting.Inventory.Sorting.Equippable;
-using AdditionalInventorySorting.Inventory.Tabs;
-using AdditionalInventorySorting.Loot;
+using ImprovedInventory.Config;
+using ImprovedInventory.Inventory;
+using ImprovedInventory.Inventory.Sorting;
+using ImprovedInventory.Inventory.Sorting.Equippable;
+using ImprovedInventory.Inventory.Tabs;
+using ImprovedInventory.Loot;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 
-namespace AdditionalInventorySorting;
+namespace ImprovedInventory;
 
 [BepInPlugin(PluginConsts.PLUGIN_GUID, PluginConsts.PLUGIN_NAME, PluginConsts.PLUGIN_VERSION)]
 public class Plugin : BaseUnityPlugin

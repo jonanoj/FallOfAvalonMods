@@ -1,7 +1,7 @@
 using System.Reflection;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.Tabs;
 
-namespace AdditionalInventorySorting.Inventory.Tabs;
+namespace ImprovedInventory.Inventory.Tabs;
 
 public static class ItemsTabTypeInjector
 {

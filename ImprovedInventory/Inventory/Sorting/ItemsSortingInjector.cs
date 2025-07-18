@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using AdditionalInventorySorting.Config;
-using AdditionalInventorySorting.Utils;
+using ImprovedInventory.Config;
+using ImprovedInventory.Utils;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 
-namespace AdditionalInventorySorting.Inventory.Sorting;
+namespace ImprovedInventory.Inventory.Sorting;
 
 public static class ItemsSortingInjector
 {

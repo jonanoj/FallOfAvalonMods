@@ -2,7 +2,7 @@ using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
 using Awaken.TG.Main.Heroes.Items;
 using HarmonyLib;
 
-namespace AdditionalInventorySorting.Inventory.Sorting.Equippable;
+namespace ImprovedInventory.Inventory.Sorting.Equippable;
 
 public class ItemsSortingPatch
 {

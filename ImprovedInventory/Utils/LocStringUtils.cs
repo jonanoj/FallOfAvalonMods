@@ -1,6 +1,6 @@
 using Awaken.TG.Main.Localization;
 
-namespace AdditionalInventorySorting.Utils;
+namespace ImprovedInventory.Utils;
 
 public static class LocStringUtils
 {

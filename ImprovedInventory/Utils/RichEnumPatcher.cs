@@ -4,7 +4,7 @@ using Awaken.Utility.Collections;
 using Awaken.Utility.Enums;
 using Awaken.Utility.Enums.Helpers;
 
-namespace AdditionalInventorySorting.Utils;
+namespace ImprovedInventory.Utils;
 
 public static class RichEnumPatcher
 {

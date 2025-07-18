@@ -1,12 +1,12 @@
 using System;
-using AdditionalInventorySorting.Utils;
+using ImprovedInventory.Utils;
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.Tabs;
 using Awaken.TG.Main.Heroes.Items;
 using Awaken.TG.Main.Scenes.SceneConstructors;
 using Awaken.TG.Main.Templates;
 
-namespace AdditionalInventorySorting.Inventory.Tabs;
+namespace ImprovedInventory.Inventory.Tabs;
 
 public enum PotionType
 {
