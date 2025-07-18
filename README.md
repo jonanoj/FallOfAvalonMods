@@ -23,14 +23,17 @@ See [ModPrebuild.csproj](ModPrebuild/ModPrebuild.csproj) for details on how this
 
 ### Package a mod
 
-To package a mod for release, run the following script:
-Build output is saved to artifacts/{Mod Folder Name}.zip
+To package a mod for release, run the following script (using git bash):
+
+Build output is saved to `artifacts/{Mod Folder Name}.zip`
 
 ```shell
 ./package.sh {Mod Folder Name}
 ```
 
 ## Update mod version
+
+To increase a mod version number, run the following script (using git bash):
 
 ```shell
 ./bump-version.sh {Mod Folder Name} major # breaking change
