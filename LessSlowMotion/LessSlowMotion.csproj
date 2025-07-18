@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>LessSlowMotion</AssemblyName>
     <Product>LessSlowMotion</Product>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <RootNamespace>LessSlowMotion</RootNamespace>
   </PropertyGroup>
 </Project>
