@@ -1,10 +1,10 @@
+using System.Collections.Generic;
 using System.Text;
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.Items;
 using Awaken.TG.Main.Heroes.Items.Loadouts;
 using Awaken.TG.MVC.Elements;
 using HarmonyLib;
-using Il2CppSystem.Collections.Generic;
 
 namespace AdditionalInventorySorting.Inventory.Sorting.Equippable;
 

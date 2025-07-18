@@ -1,51 +1,40 @@
-using System;
 using AdditionalInventorySorting.Utils;
 using Awaken.TG.Main.Heroes.CharacterSheet.Items.Panel.List;
-using Awaken.TG.Main.Heroes.Items;
-using Il2CppInterop.Runtime;
 
 namespace AdditionalInventorySorting.Inventory.Sorting;
 
-public static class ItemsSortingExtended
+public class ItemsSortingExtended : ItemsSorting
 {
-    public static readonly ItemsSorting ByWorthDesc = New(nameof(ByWorthDesc),
+    public static readonly ItemsSortingExtended ByWorthDesc = new(nameof(ByWorthDesc),
         Plugin.LanguageConfig.SortByWorthDescDisplayName.Value, ExtendedItemComparers.ComparePriceToWeightDescending);
 
-    public static readonly ItemsSorting ByWorthAsc = New(nameof(ByWorthAsc),
+    public static readonly ItemsSortingExtended ByWorthAsc = new(nameof(ByWorthAsc),
         Plugin.LanguageConfig.SortByWorthAscDisplayName.Value, ExtendedItemComparers.ComparePriceToWeightDescending,
         true);
 
-    public static readonly ItemsSorting ByTotalWeightDesc = New(nameof(ByTotalWeightDesc),
+    public static readonly ItemsSortingExtended ByTotalWeightDesc = new(nameof(ByTotalWeightDesc),
         Plugin.LanguageConfig.SortByTotalWeightDescDisplayName.Value,
         ExtendedItemComparers.CompareTotalWeightDescending);
 
-    public static readonly ItemsSorting AlphabeticalAsc = New(nameof(AlphabeticalAsc),
+    public static readonly ItemsSortingExtended AlphabeticalAsc = new(nameof(AlphabeticalAsc),
         Plugin.LanguageConfig.SortByNameDisplayName.Value, ExtendedItemComparers.CompareItemName);
 
-    public static readonly ItemsSorting ByArmorWorthDesc = New(nameof(ByArmorWorthDesc),
+    public static readonly ItemsSortingExtended ByArmorWorthDesc = new(nameof(ByArmorWorthDesc),
         Plugin.LanguageConfig.SortByArmorWorthDescDisplayName.Value,
         ExtendedItemComparers.CompareArmorToWeightDescending);
 
-    private static ItemsSorting New(string name, string displayName, Func<Item, Item, int> comparer,
-        bool reverse = false)
+    private ItemsSortingExtended(string name, string displayName, Comparer comparer, bool reverse = false) :
+        base(name, comparer, reverse, "")
     {
-        return new ItemsSorting(name, ConvertComparer(comparer), reverse, "")
-        {
-            _name = LocStringUtils.New(nameof(ItemsSortingExtended), name, displayName)
-        };
+        LocStringUtils.Initialize(_name, nameof(ItemsSortingExtended), name, displayName);
     }
 
     public static bool InjectMembers()
     {
-        return RichEnumPatcher.AddOrUpdateMember(ByWorthDesc) &&
-               RichEnumPatcher.AddOrUpdateMember(ByWorthAsc) &&
-               RichEnumPatcher.AddOrUpdateMember(ByTotalWeightDesc) &&
-               RichEnumPatcher.AddOrUpdateMember(AlphabeticalAsc) &&
-               RichEnumPatcher.AddOrUpdateMember(ByArmorWorthDesc);
-    }
-
-    private static ItemsSorting.Comparer ConvertComparer(Func<Item, Item, int> comparer)
-    {
-        return DelegateSupport.ConvertDelegate<ItemsSorting.Comparer>(comparer);
+        return RichEnumPatcher.AddOrUpdateMember<ItemsSorting>(ByWorthDesc) &&
+               RichEnumPatcher.AddOrUpdateMember<ItemsSorting>(ByWorthAsc) &&
+               RichEnumPatcher.AddOrUpdateMember<ItemsSorting>(ByTotalWeightDesc) &&
+               RichEnumPatcher.AddOrUpdateMember<ItemsSorting>(AlphabeticalAsc) &&
+               RichEnumPatcher.AddOrUpdateMember<ItemsSorting>(ByArmorWorthDesc);
     }
 }

@@ -25,7 +25,7 @@ public static class ItemsSortingInjector
                            ItemsSorting.ByArmorDescending, ItemsSortingExtended.ByArmorWorthDesc);
 
 #if DEBUG
-        static void DumpComparers(string name, Il2CppSystem.Collections.Generic.List<ItemsSorting> comparers)
+        static void DumpComparers(string name, List<ItemsSorting> comparers)
         {
             Plugin.Log.LogInfo($"Comparers in {name}:");
             foreach (ItemsSorting comparer in comparers)
@@ -55,7 +55,7 @@ public static class ItemsSortingInjector
                    additionalComparers);
     }
 
-    private static bool AddComparerAfter(Il2CppSystem.Collections.Generic.List<ItemsSorting> comparersList,
+    private static bool AddComparerAfter(List<ItemsSorting> comparersList,
         string comparerListName, ItemsSorting afterValue, params ItemsSorting[] additionalComparers)
     {
         if (ListInjection.TryInsertAfter(comparersList, RichEnumComparer, afterValue, additionalComparers))
