@@ -9,7 +9,6 @@ if [[ -z "$modDir" ]]; then
     exit 1
 fi
 
-dotnet restore "$modDir"
 dotnet build -c Release "$modDir"
 
 if [[ ! -d "$modDir" ]]; then
@@ -17,7 +16,8 @@ if [[ ! -d "$modDir" ]]; then
     exit 1
 fi
 
-if [[ ! -f "$modDir/bin/Release/net6.0/$modDir.dll" ]]; then
+MOD_DLL_PATH="$modDir/bin/Release/netstandard2.1/$modDir.dll"
+if [[ ! -f "$MOD_DLL_PATH" ]]; then
     echo "Build output does not exist"
     exit 1
 fi
@@ -73,7 +73,7 @@ package_zip() {
 
     local tmpdir=$(mktemp -d)
     mkdir -p "$tmpdir/plugins"
-    cp "$SCRIPT_DIR/$modDir/bin/Release/net6.0/${modDir}.dll" "$tmpdir/plugins/"
+    cp "$SCRIPT_DIR/$MOD_DLL_PATH" "$tmpdir/plugins/"
     if [[ -f "$changelog_path" ]]; then
         cp "$changelog_path" "$tmpdir/plugins/"
     fi
