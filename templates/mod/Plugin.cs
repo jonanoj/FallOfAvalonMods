@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using BepInEx;
 using BepInEx.Logging;
-using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 
 namespace ModName;
@@ -16,7 +15,7 @@ public class Plugin : BaseUnityPlugin
 
     public void Awake()
     {
-        Log = base.Log;
+        Log = Logger;
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
 
         PluginConfig = new PluginConfig(Config);
