@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>LessHoldTime</AssemblyName>
     <Product>LessHoldTime</Product>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <RootNamespace>LessHoldTime</RootNamespace>
   </PropertyGroup>
 </Project>
