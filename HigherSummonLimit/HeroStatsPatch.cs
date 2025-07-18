@@ -1,4 +1,8 @@
 using Awaken.TG.Main.Character;
+using Awaken.TG.Main.Heroes;
+using Awaken.TG.Main.Heroes.Stats;
+using Awaken.TG.Main.Heroes.Stats.Tweaks;
+using Awaken.TG.MVC;
 using HarmonyLib;
 
 namespace HigherSummonLimit;
@@ -6,16 +10,34 @@ namespace HigherSummonLimit;
 [HarmonyPatch]
 public class HeroStatsPatch
 {
-    [HarmonyPatch(typeof(HeroStats), nameof(HeroStats.OnInitialize))]
+    [HarmonyPatch(typeof(HeroRPGStats), nameof(HeroRPGStats.AfterHeroFullyInitialized))]
     [HarmonyPostfix]
-    public static void OnInitializePostfix(HeroStats __instance)
+    public static void HeroRpgStatsAfterHeroFullyInitializedPostfix()
     {
-        // I originally tried overriding SummonLimit itself, but it doesn't seem to be called.
-        // I also tried reverting the summon limit to the original value in a prefix patch to Serialize,
-        // but the game crashes if you have more summons than your original limit
-        Plugin.Log.LogInfo($"{nameof(HeroStats)}.{nameof(HeroStats.OnInitialize)} called, " +
-                           $"original summon limit is {__instance.SummonLimit.BaseValue}, setting to {Plugin.PluginConfig.SummonLimitOverride.Value}");
+        Hero hero = Hero.Current;
+        if (hero == null)
+        {
+            Plugin.Log.LogError("Player object doesn't exist, can't increase summon limit");
+            return;
+        }
 
-        __instance.SummonLimit.SetTo(Plugin.PluginConfig.SummonLimitOverride.Value);
+        TweakSystem tweakSystem = World.Services.Get<TweakSystem>();
+        if (tweakSystem == null)
+        {
+            Plugin.Log.LogError("TweakSystem is null, can't increase summon limit");
+            return;
+        }
+
+        float additionalSummonLimit = Plugin.PluginConfig.AdditionalSummonLimit.Value;
+
+        Stat summonLimit = hero.HeroStats.SummonLimit;
+        float originSummonLimit = summonLimit.ModifiedValue;
+
+        tweakSystem.AddTweak(tweakSystem.Tweak(
+            summonLimit,
+            StatTweak.Add(summonLimit, additionalSummonLimit, TweakPriority.Add),
+            TweakPriority.Add));
+
+        Plugin.Log.LogInfo($"Summon limit changed from {originSummonLimit} to {summonLimit.ModifiedValue}");
     }
 }
