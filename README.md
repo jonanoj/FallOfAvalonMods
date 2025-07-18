@@ -8,9 +8,9 @@ The build system copies mod DLLs to the directory set by the `GameDir` property 
 `C:\Program Files (x86)\Steam\steamapps\common\Tainted Grail FoA\`).
 It will also deploy the mod DLLs to the `GameDir\BepInEx\plugins\` automatically when you build a mod.
 
-To change it:[ModPrebuild.csproj](ModPrebuild/ModPrebuild.csproj)
+To change it:
 
-1. Open `Global.props` in the repo root.[ModPrebuild.csproj](ModPrebuild/ModPrebuild.csproj)
+1. Open `Global.props` in the repo root.
 1. Edit the path: (note the trailing backslash)
    ```xml
    <GameDir>D:\Alternative\Game\Path\</GameDir>
