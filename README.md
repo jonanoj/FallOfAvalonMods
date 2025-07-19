@@ -33,7 +33,8 @@ Build output is saved to `artifacts/{Mod Folder Name}.zip`
 
 ## Update mod version
 
-The mods in this project use [Semantic Versioning](https://semver.org/)
+The mods in this project use [Semantic Versioning](https://semver.org/).
+
 To increase version number of a mod, run the following script (using git bash):
 
 ```shell
