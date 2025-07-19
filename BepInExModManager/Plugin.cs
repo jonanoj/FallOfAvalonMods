@@ -9,7 +9,6 @@ namespace BepInExModManager;
 public class Plugin : BaseUnityPlugin
 {
     internal static ManualLogSource Log;
-    internal static PluginConfig PluginConfig;
 
     public Harmony HarmonyInstance { get; set; }
 
@@ -18,7 +17,6 @@ public class Plugin : BaseUnityPlugin
         Log = Logger;
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
 
-        PluginConfig = new PluginConfig(Config);
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
