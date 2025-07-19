@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 
@@ -9,7 +10,7 @@ namespace ImprovedStorage;
 public class Plugin : BaseUnityPlugin
 {
     internal static ManualLogSource Log;
-    internal static PluginConfig PluginConfig;
+    internal static LanguageConfig LanguageConfig;
 
     public Harmony HarmonyInstance { get; set; }
 
@@ -18,7 +19,10 @@ public class Plugin : BaseUnityPlugin
         Log = Logger;
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
 
-        PluginConfig = new PluginConfig(Config);
+        LanguageConfig = new LanguageConfig(new ConfigFile(
+            Utility.CombinePaths(Paths.ConfigPath, PluginConsts.PLUGIN_GUID + ".Language.cfg"), false,
+            MetadataHelper.GetMetadata(this)));
+
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
