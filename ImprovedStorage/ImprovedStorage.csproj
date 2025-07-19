@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../Mod.props"/>
+  <PropertyGroup>
+    <AssemblyName>ImprovedStorage</AssemblyName>
+    <Product>ImprovedStorage</Product>
+    <Version>1.0.0</Version>
+    <RootNamespace>ImprovedStorage</RootNamespace>
+  </PropertyGroup>
+</Project>

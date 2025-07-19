@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModPrebuild", "ModPrebuild\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInExModManager", "BepInExModManager\BepInExModManager.csproj", "{BCEDC9AD-B480-4675-9006-082EF9311DD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedStorage", "ImprovedStorage\ImprovedStorage.csproj", "{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{BCEDC9AD-B480-4675-9006-082EF9311DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCEDC9AD-B480-4675-9006-082EF9311DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCEDC9AD-B480-4675-9006-082EF9311DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
