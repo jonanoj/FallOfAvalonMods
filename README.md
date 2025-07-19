@@ -33,7 +33,8 @@ Build output is saved to `artifacts/{Mod Folder Name}.zip`
 
 ## Update mod version
 
-To increase a mod version number, run the following script (using git bash):
+The mods in this project use [Semantic Versioning](https://semver.org/)
+To increase version number of a mod, run the following script (using git bash):
 
 ```shell
 ./bump-version.sh {Mod Folder Name} major # breaking change
