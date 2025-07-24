@@ -51,6 +51,7 @@ public class Plugin : BaseUnityPlugin
         if (PluginConfig.ShowInfoInLoot.Value)
         {
             PContainerElementPatch.Patch();
+            PContainerOneTimePatch.Patch();
         }
 
         if (PluginConfig.EquipSortMode.Value != EquipSortModes.Vanilla)
@@ -89,6 +90,7 @@ public class Plugin : BaseUnityPlugin
         HarmonyInstance?.UnpatchSelf();
         ItemTooltipFooterComponentSetupCountersPatch.Unpatch();
         PContainerElementPatch.Unpatch();
+        PContainerOneTimePatch.Unpatch();
         ItemLoadoutCache.Unpatch();
         ItemsSortingPatch.Unpatch();
 
