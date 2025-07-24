@@ -51,7 +51,7 @@ public static class ItemsTabTypeInjector
 
     private static void SetSubTabs(this ItemsTabType itemsTabType, ItemsTabType[] subTabs)
     {
-        var field = typeof(ItemsTabType).GetField($"<{nameof(ItemsTabType.SubTabs)}>k__BackingField",
+        FieldInfo field = typeof(ItemsTabType).GetField($"<{nameof(ItemsTabType.SubTabs)}>k__BackingField",
             BindingFlags.Instance | BindingFlags.NonPublic);
 
         if (field != null)

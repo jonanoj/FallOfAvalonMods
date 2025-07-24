@@ -55,7 +55,7 @@ public class HeroStoragePatch
         Plugin.Log.LogInfo(
             $"Moving {items.Count} items to {currentTab.ActionName} (in/from) storage - tabType={itemTab.EnumName}");
 
-        foreach (var item in items)
+        foreach (Item item in items)
         {
             item.MoveTo(currentTab.InventoryTo, item.Quantity);
             if (currentTab.SellerNoLongerOwnsItem(item))

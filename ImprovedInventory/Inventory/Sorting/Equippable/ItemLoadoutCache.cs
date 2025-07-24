@@ -13,7 +13,7 @@ namespace ImprovedInventory.Inventory.Sorting.Equippable;
 public static class ItemLoadoutCache
 {
     private static readonly Harmony HarmonyInstance = new(nameof(ItemLoadoutCache));
-    private static HashSet<string> ItemIdsInLoadout = new();
+    private static HashSet<string> ItemIdsInLoadout = [];
     private static readonly object Lock = new();
 
     public static void Patch()

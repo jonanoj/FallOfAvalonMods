@@ -12,7 +12,7 @@ public static class RichEnumPatcher
 
     static RichEnumPatcher()
     {
-        var cacheField = typeof(StaticStringSerialization).GetField("s_instanceCache",
+        FieldInfo cacheField = typeof(StaticStringSerialization).GetField("s_instanceCache",
             BindingFlags.Static | BindingFlags.NonPublic);
         if (cacheField == null)
         {

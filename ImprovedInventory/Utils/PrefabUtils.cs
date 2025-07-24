@@ -15,7 +15,7 @@ public static class PrefabUtils
         string prefabPath = Path.Combine(PrefabsPath, prefabName);
         try
         {
-            var prefab = Resources.Load<GameObject>(prefabPath);
+            GameObject prefab = Resources.Load<GameObject>(prefabPath);
             if (prefab == null)
             {
                 Plugin.Log.LogError($"Prefab doesn't exist: {prefabPath}");
