@@ -24,7 +24,7 @@ public static class ListInjection
             if (comparer(item, firstItemToAdd))
             {
                 // Already patched
-                return false;
+                return true;
             }
 
             if (comparer(item, afterWhat))

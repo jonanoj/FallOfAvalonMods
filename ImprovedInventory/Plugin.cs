@@ -30,16 +30,16 @@ public class Plugin : BaseUnityPlugin
             Utility.CombinePaths(Paths.ConfigPath, PluginConsts.PLUGIN_GUID + ".Language.cfg"), false,
             MetadataHelper.GetMetadata(this)));
 
-        if (!ItemsSortingExtended.InjectMembers())
+        if (ItemsSortingExtended.InjectMembers())
+        {
+            if (!ItemsSortingInjector.InjectComparers())
+            {
+                Log.LogError("Failed to inject custom comparers to ItemSorting list");
+            }
+        }
+        else
         {
             Log.LogError("Failed to inject ItemsSorting RichEnum extensions");
-            return;
-        }
-
-        if (!ItemsSortingInjector.InjectComparers())
-        {
-            Log.LogError("Failed to inject custom comparers to ItemSorting list");
-            return;
         }
 
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
