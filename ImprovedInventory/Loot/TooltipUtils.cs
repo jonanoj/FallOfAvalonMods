@@ -32,7 +32,7 @@ public static class TooltipUtils
 
     private static Texture GetFooterTexture(string textureObjectPath)
     {
-        var footer = GetCachedFooterContent();
+        GameObject footer = GetCachedFooterContent();
         return footer.transform.Find(textureObjectPath).TryGetComponent(out Image image) ? image.mainTexture : null;
     }
 
@@ -76,11 +76,19 @@ public static class TooltipUtils
             return null;
         }
 
-        var footerContentClone = Object.Instantiate(content.gameObject, moddedObjectsRoot.transform);
-        footerContentClone.name = "ImprovedInventoryLootItemStats";
+        const string footerContentName = "ImprovedInventoryLootItemStats";
+        GameObject footerContentClone = moddedObjectsRoot.transform.Find(footerContentName)?.gameObject;
+        if (footerContentClone != null)
+        {
+            return footerContentClone;
+        }
+
+        footerContentClone = Object.Instantiate(content.gameObject, moddedObjectsRoot.transform);
+        footerContentClone.name = footerContentName;
+        footerContentClone.SetActive(false); // Don't render the clone, we just want to get the images
 
         // Remove the item category
-        var typeName = footerContentClone.transform.Find("TypeName");
+        Transform typeName = footerContentClone.transform.Find("TypeName");
         if (typeName != null)
         {
             Object.Destroy(typeName.gameObject);
@@ -117,7 +125,7 @@ public static class TooltipUtils
 
         const string jonanojModded = "jonanoj.Modded";
 
-        var rootObject = applicationScene.GetRootGameObjects().FirstOrDefault(go => go.name == jonanojModded);
+        GameObject rootObject = applicationScene.GetRootGameObjects().FirstOrDefault(go => go.name == jonanojModded);
         if (rootObject == null)
         {
             rootObject = new GameObject(jonanojModded);
