@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInExModManager", "BepInE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedStorage", "ImprovedStorage\ImprovedStorage.csproj", "{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandRegrow", "HandRegrow\HandRegrow.csproj", "{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C51F6A00-7C2B-4138-A59D-9F98DF5C4033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../Mod.props"/>
+  <PropertyGroup>
+    <AssemblyName>HandRegrow</AssemblyName>
+    <Product>HandRegrow</Product>
+    <Version>1.0.0</Version>
+    <RootNamespace>HandRegrow</RootNamespace>
+  </PropertyGroup>
+</Project>
