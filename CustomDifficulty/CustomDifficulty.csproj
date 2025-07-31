@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../Mod.props"/>
+  <PropertyGroup>
+    <AssemblyName>CustomDifficulty</AssemblyName>
+    <Product>CustomDifficulty</Product>
+    <Version>1.0.0</Version>
+    <RootNamespace>CustomDifficulty</RootNamespace>
+  </PropertyGroup>
+</Project>

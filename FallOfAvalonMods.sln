@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovedStorage", "Improved
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandRegrow", "HandRegrow\HandRegrow.csproj", "{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDifficulty", "CustomDifficulty\CustomDifficulty.csproj", "{983F9AD4-7ACC-4125-A04A-5034F09E85A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F633A2EB-7D0F-4F23-98B9-BDD456D2B056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983F9AD4-7ACC-4125-A04A-5034F09E85A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983F9AD4-7ACC-4125-A04A-5034F09E85A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983F9AD4-7ACC-4125-A04A-5034F09E85A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983F9AD4-7ACC-4125-A04A-5034F09E85A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
