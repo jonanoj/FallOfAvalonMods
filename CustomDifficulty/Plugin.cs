@@ -19,6 +19,7 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
 
         PluginConfig = new PluginConfig(Config);
+        Config.SettingChanged += SettingsEvent.OnSettingChanged;
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
@@ -28,6 +29,7 @@ public class Plugin : BaseUnityPlugin
     {
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloading...");
 
+        Config.SettingChanged -= SettingsEvent.OnSettingChanged;
         HarmonyInstance?.UnpatchSelf();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
