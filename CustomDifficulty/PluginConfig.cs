@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Awaken.TG.Main.General.StatTypes;
 using BepInEx.Configuration;
 
 namespace CustomDifficulty;
@@ -25,6 +27,11 @@ public class PluginConfig
     public ConfigEntry<float> KillExpMultiplier { get; private set; }
     public ConfigEntry<float> QuestExpMultiplier { get; private set; }
     public ConfigEntry<float> ProficiencyExpMultiplier { get; private set; }
+
+
+    private const string ProficiencyExpMultipliers = "ProficiencyExpMultipliers";
+    public Dictionary<string, ConfigEntry<float>> ProfExpMultipliers { get; } = [];
+
 
     private const string CoinMultipliers = "CoinMultipliers";
     public ConfigEntry<float> RewardCoinMultiplier { get; private set; }
@@ -64,6 +71,15 @@ public class PluginConfig
                 (i.e. One/Two-Handed, Block, Light/Medium/Heavy Armor, Sneak, Cooking, etc.)
                 This does NOT affect player level.
                 """);
+
+            config.Bind(ProficiencyExpMultipliers, "@" + ProficiencyExpMultipliers, "", MultiplierDescription);
+            foreach (ProfStatType proficiency in ProfStatType.HeroProficiencies)
+            {
+                string name = proficiency.EnumName;
+                ConfigEntry<float> entry = config.Bind(ProficiencyExpMultipliers, name, 1f,
+                    $"Multiplier for {proficiency.DisplayName} proficiency experience gain");
+                ProfExpMultipliers[name] = entry;
+            }
 
             config.Bind(CoinMultipliers, "@" + CoinMultipliers, "", MultiplierDescription);
             RewardCoinMultiplier = config.Bind(CoinMultipliers, nameof(RewardCoinMultiplier), 1f,
