@@ -15,7 +15,7 @@ public static class SettingsEvent
         Plugin.Log.LogInfo(
             $"Setting changed: {setting.Definition.Key} in section {setting.Definition.Section}");
 #endif
-        if (setting.Definition.Section != PluginConfig.Multipliers)
+        if (setting.Definition.Section != PluginConfig.DifficultyMultipliers)
         {
             // Only multipliers are listening to the SettingRefresh event
             return;
