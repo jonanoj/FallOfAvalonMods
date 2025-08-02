@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Awaken.TG.Main.General.StatTypes;
 using BepInEx.Configuration;
 
@@ -73,12 +74,11 @@ public class PluginConfig
                 """);
 
             config.Bind(ProficiencyExpMultipliers, "@" + ProficiencyExpMultipliers, "", MultiplierDescription);
-            foreach (ProfStatType proficiency in ProfStatType.HeroProficiencies)
+            foreach (string proficiency in ProfStatType.HeroProficiencies.Select(p => p.EnumName))
             {
-                string name = proficiency.EnumName;
-                ConfigEntry<float> entry = config.Bind(ProficiencyExpMultipliers, name, 1f,
-                    $"Multiplier for {proficiency.DisplayName} proficiency experience gain");
-                ProfExpMultipliers[name] = entry;
+                ConfigEntry<float> entry = config.Bind(ProficiencyExpMultipliers, proficiency, 1f,
+                    $"Multiplier for {proficiency} proficiency experience gain");
+                ProfExpMultipliers[proficiency] = entry;
             }
 
             config.Bind(CoinMultipliers, "@" + CoinMultipliers, "", MultiplierDescription);
