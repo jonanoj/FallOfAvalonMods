@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandRegrow", "HandRegrow\Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDifficulty", "CustomDifficulty\CustomDifficulty.csproj", "{983F9AD4-7ACC-4125-A04A-5034F09E85A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DualTwoHanded", "DualTwoHanded\DualTwoHanded.csproj", "{B044124D-7994-4709-9934-644144AA39EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{983F9AD4-7ACC-4125-A04A-5034F09E85A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{983F9AD4-7ACC-4125-A04A-5034F09E85A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{983F9AD4-7ACC-4125-A04A-5034F09E85A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B044124D-7994-4709-9934-644144AA39EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B044124D-7994-4709-9934-644144AA39EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B044124D-7994-4709-9934-644144AA39EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B044124D-7994-4709-9934-644144AA39EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
