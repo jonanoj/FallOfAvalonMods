@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 
@@ -20,14 +21,21 @@ public class Plugin : BaseUnityPlugin
 
         PluginConfig = new PluginConfig(Config);
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
+        Config.SettingChanged += OnSettingsChanged;
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
+    }
+
+    private void OnSettingsChanged(object __sender, SettingChangedEventArgs __e)
+    {
+        ItemEquipPatch.ClearCache();
     }
 
     public void OnDestroy()
     {
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloading...");
 
+        Config.SettingChanged -= OnSettingsChanged;
         HarmonyInstance?.UnpatchSelf();
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloaded!");
