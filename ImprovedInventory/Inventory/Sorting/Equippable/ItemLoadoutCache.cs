@@ -81,20 +81,4 @@ public static class ItemLoadoutCache
             ItemIdsInLoadout = newCache;
         }
     }
-
-#if DEBUG
-    private static string Join(this HashSet<string> dictionary, string separator = ", ")
-    {
-        var sb = new StringBuilder();
-        foreach (string hash in dictionary)
-        {
-            sb.Append(hash).Append(separator);
-        }
-
-        if (sb.Length > 3)
-            sb.Remove(sb.Length - 2, 2);
-
-        return sb.ToString();
-    }
-#endif
 }
