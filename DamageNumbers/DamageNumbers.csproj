@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../Mod.props"/>
+  <PropertyGroup>
+    <AssemblyName>DamageNumbers</AssemblyName>
+    <Product>DamageNumbers</Product>
+    <Version>1.0.0</Version>
+    <RootNamespace>DamageNumbers</RootNamespace>
+  </PropertyGroup>
+</Project>
