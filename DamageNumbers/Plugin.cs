@@ -13,12 +13,16 @@ public class Plugin : BaseUnityPlugin
 
     public Harmony HarmonyInstance { get; set; }
 
+    public static Plugin Instance { get; set; }
+
     public void Awake()
     {
+        Instance = this;
         Log = Logger;
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loading...");
 
         PluginConfig = new PluginConfig(Config);
+
         HarmonyInstance = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is loaded!");
@@ -27,6 +31,8 @@ public class Plugin : BaseUnityPlugin
     public void OnDestroy()
     {
         Log.LogInfo($"Plugin {PluginConsts.PLUGIN_GUID} is unloading...");
+
+        HeroPatch.Dispose();
 
         HarmonyInstance?.UnpatchSelf();
 
