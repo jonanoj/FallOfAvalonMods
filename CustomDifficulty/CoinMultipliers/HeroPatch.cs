@@ -1,6 +1,7 @@
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.Stats;
 using Awaken.TG.MVC.Events;
+using BepInEx.Configuration;
 using HarmonyLib;
 
 namespace CustomDifficulty.CoinMultipliers;
@@ -18,7 +19,7 @@ public class HeroPatch
 #if DEBUG
             float before = statChange.Value.value;
 #endif
-            var multiplier = statChange.Value.context?.reason == ChangeReason.Trade
+            ConfigEntry<float> multiplier = statChange.Value.context?.reason == ChangeReason.Trade
                 ? Plugin.PluginConfig.SellCoinMultiplier
                 : Plugin.PluginConfig.RewardCoinMultiplier;
             statChange.Value = new Stat.StatChange(statChange.Value.stat, statChange.Value.value * multiplier.Value,

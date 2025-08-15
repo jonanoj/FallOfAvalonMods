@@ -28,7 +28,7 @@ public static class SettingsEvent
             return;
         }
 
-        var difficultySetting = World.Only<DifficultySetting>();
+        DifficultySetting difficultySetting = World.Only<DifficultySetting>();
         if (difficultySetting._options == null)
         {
             Plugin.Log.LogDebug("Difficulty isn't loaded yet");

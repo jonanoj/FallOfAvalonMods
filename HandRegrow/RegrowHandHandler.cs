@@ -25,10 +25,10 @@ public static class RegrowHandHandler
 
     private static void CleanLoadouts(Hero hero)
     {
-        var handCutOffItems = hero.HeroItems.OwnedItems.FirstOrDefault(item =>
+        Item handCutOffItems = hero.HeroItems.OwnedItems.FirstOrDefault(item =>
             item.Template.InheritsFrom(CommonReferences.Get.HandCutOffItemTemplate));
 
-        foreach (var loadout in hero.HeroItems.Loadouts)
+        foreach (HeroLoadout loadout in hero.HeroItems.Loadouts)
         {
             RemoveSlotLock(loadout);
             RemoveHandCutOffItem(loadout, handCutOffItems);
@@ -59,7 +59,7 @@ public static class RegrowHandHandler
         }
         else
         {
-            foreach (var locker in lockers)
+            foreach (HeroLoadoutSlotLocker locker in lockers)
             {
                 loadout.RemoveElement(locker);
             }

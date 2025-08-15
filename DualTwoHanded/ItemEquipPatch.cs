@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using Awaken.TG.Main.Character;
 using Awaken.TG.Main.Heroes;
 using Awaken.TG.Main.Heroes.CharacterSheet.Overviews.Tabs.CharacterStats;
@@ -13,12 +14,12 @@ namespace DualTwoHanded;
 [HarmonyPatch]
 public class ItemEquipPatch
 {
-    private static readonly Dictionary<ItemEquip, bool> Cache = new();
+    private static readonly Dictionary<ItemEquip, bool> Cache = [];
 
     public static void ClearCache()
     {
 #if DEBUG
-        var caller = new StackTrace().GetFrame(1).GetMethod();
+        MethodBase caller = new StackTrace().GetFrame(1).GetMethod();
         Plugin.Log.LogInfo($"Clearing ItemEquip cache on - called by {caller.Name}");
 #endif
         Cache.Clear();
@@ -81,7 +82,7 @@ public class ItemEquipPatch
 
     private static bool CheckStats(ItemEquip __instance)
     {
-        var requirements = __instance.Item.StatsRequirements;
+        ItemStatsRequirements requirements = __instance.Item.StatsRequirements;
         return requirements == null || HasEnoughStats(Hero.Current.HeroRPGStats, requirements);
     }
 

@@ -1,5 +1,6 @@
 using Awaken.TG.Main.Character;
 using Awaken.TG.Main.General.StatTypes;
+using BepInEx.Configuration;
 using HarmonyLib;
 
 namespace CustomDifficulty.ExpMultipliers;
@@ -18,7 +19,7 @@ public class ProficiencyStatsPatch
             float before = amountOfXPToAdd;
 #endif
             amountOfXPToAdd *= Plugin.PluginConfig.ProficiencyExpMultiplier.Value;
-            if (Plugin.PluginConfig.ProfExpMultipliers.TryGetValue(statType.EnumName, out var profMultiplier))
+            if (Plugin.PluginConfig.ProfExpMultipliers.TryGetValue(statType.EnumName, out ConfigEntry<float> profMultiplier))
             {
                 amountOfXPToAdd *= profMultiplier.Value;
             }
