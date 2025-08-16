@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>DualTwoHanded</AssemblyName>
     <Product>DualTwoHanded</Product>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <RootNamespace>DualTwoHanded</RootNamespace>
   </PropertyGroup>
 </Project>
