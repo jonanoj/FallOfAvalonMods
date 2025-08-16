@@ -100,6 +100,6 @@ public class ItemEquipPatch
     private static bool ShouldIgnoreItem(ItemTemplate item)
     {
         // Keep pickaxes, shovels, fishing rods, etc. as two-handed tools
-        return !item.IsMelee || item.IsTool;
+        return !item.IsMelee || (item.IsTool && !Plugin.PluginConfig.AllowOneHandedTools.Value);
     }
 }
