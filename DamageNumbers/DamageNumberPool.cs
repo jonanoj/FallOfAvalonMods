@@ -41,16 +41,18 @@ public class DamageNumberPool : MonoBehaviour
 
     public void ShowDamage(DamageOutcome outcome)
     {
-        int amount = Mathf.RoundToInt(outcome.FinalAmount);
-        if (amount < 1)
+        float amount = Mathf.Ceil(outcome.FinalAmount * 10f) / 10f;
+        if (amount < Plugin.PluginConfig.HideDamageNumberThreshold.Value)
         {
             return;
         }
 
+        string amountString = amount > 1 ? Mathf.RoundToInt(amount).ToString() : amount.ToString("N1");
+
         if (_pool.Count == 0)
         {
             Plugin.Log.LogWarning(
-                $"Too many damage numbers in use, skipping {amount} damage. " +
+                $"Too many damage numbers in use, skipping {amountString} damage. " +
                 $"Increase the {nameof(Plugin.PluginConfig.MaximumDamageNumbers)} value in the config file to see more.");
             return;
         }
@@ -65,7 +67,7 @@ public class DamageNumberPool : MonoBehaviour
         }
 
 #if DEBUG
-        Plugin.Log.LogInfo($"Showing damage number at {position} with amount {amount}");
+        Plugin.Log.LogInfo($"Showing damage number at {position} with amount {amountString}");
 #endif
 
         Color color = outcome.DamageModifiersInfo.AnyCritical
@@ -73,7 +75,7 @@ public class DamageNumberPool : MonoBehaviour
             : Plugin.PluginConfig.DamageColor.Value;
 
         DamageNumber dmgNum = _pool.Dequeue();
-        dmgNum.Init(amount, position, color, ReturnToPool);
+        dmgNum.Init(amountString, position, color, ReturnToPool);
     }
 
     private void ReturnToPool(DamageNumber dmgNum)

@@ -11,6 +11,7 @@ public class PluginConfig
     public ConfigEntry<Color> DamageColor { get; private set; }
     public ConfigEntry<Color> CriticalDamageColor { get; private set; }
     public ConfigEntry<int> MaximumDamageNumbers { get; private set; }
+    public ConfigEntry<float> HideDamageNumberThreshold { get; private set; }
 
     private const string ColorDescription =
         """
@@ -48,6 +49,11 @@ public class PluginConfig
                 """
                 Maximum number of damage numbers to display at once.
                 Increase if you want to see more damage numbers simultaneously, but it may impact readability or performance if set too high"
+                """);
+            HideDamageNumberThreshold = config.Bind(damageNumbersCategory, nameof(HideDamageNumberThreshold), 1f,
+                """
+                Minimum amount of damage to show a number for, any value below this will be hidden
+                You can also specify number
                 """);
         }
         finally

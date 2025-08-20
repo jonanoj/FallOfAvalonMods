@@ -39,7 +39,7 @@ public class DamageNumber : MonoBehaviour
         return Plugin.PluginConfig.FontSize.Value + fontSizeChange;
     }
 
-    public void Init(int damage, Vector3 position, Color color, Action<DamageNumber> onDespawnCallback)
+    public void Init(string damage, Vector3 position, Color color, Action<DamageNumber> onDespawnCallback)
     {
         _camera = Camera.main;
         _canvas = GetComponentInParent<Canvas>();
