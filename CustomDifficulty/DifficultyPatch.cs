@@ -6,20 +6,6 @@ namespace CustomDifficulty;
 [HarmonyPatch]
 public class DifficultyPatch
 {
-    [HarmonyPatch(typeof(Difficulty), nameof(Difficulty.DamageDealt), MethodType.Getter)]
-    [HarmonyPostfix]
-    public static void DamageDealtPostfix(Difficulty __instance, ref float __result)
-    {
-        __result *= Plugin.PluginConfig.DamageDealtMultiplier.Value;
-    }
-
-    [HarmonyPatch(typeof(Difficulty), nameof(Difficulty.DamageReceived), MethodType.Getter)]
-    [HarmonyPostfix]
-    public static void DamageReceivedPostfix(Difficulty __instance, ref float __result)
-    {
-        __result *= Plugin.PluginConfig.DamageReceivedMultiplier.Value;
-    }
-
     [HarmonyPatch(typeof(Difficulty), nameof(Difficulty.ManaUsage), MethodType.Getter)]
     [HarmonyPostfix]
     public static void ManaUsagePostfix(Difficulty __instance, ref float __result)

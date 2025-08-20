@@ -15,9 +15,21 @@ public class PluginConfig
                                                  etc.
                                                  """;
 
+    private const string DamageDealtMultipliers = "DamageDealtMultipliers";
+    public ConfigEntry<float> PlayerDamageDealtMultiplier { get; private set; }
+    public ConfigEntry<float> PlayerSummonDamageDealtMultiplier { get; private set; }
+    public ConfigEntry<float> EnemyDamageDealtMultiplier { get; private set; }
+    public ConfigEntry<float> MiniBossDamageDealtMultiplier { get; private set; }
+    public ConfigEntry<float> BossDamageDealtMultiplier { get; private set; }
+
+    private const string DamageTakenMultipliers = "DamageTakenMultipliers";
+    public ConfigEntry<float> PlayerDamageTakenMultiplier { get; private set; }
+    public ConfigEntry<float> PlayerSummonDamageTakenMultiplier { get; private set; }
+    public ConfigEntry<float> EnemyDamageTakenMultiplier { get; private set; }
+    public ConfigEntry<float> MiniBossDamageTakenMultiplier { get; private set; }
+    public ConfigEntry<float> BossDamageTakenMultiplier { get; private set; }
+
     public const string DifficultyMultipliers = "DifficultyMultipliers";
-    public ConfigEntry<float> DamageDealtMultiplier { get; private set; }
-    public ConfigEntry<float> DamageReceivedMultiplier { get; private set; }
     public ConfigEntry<float> StaminaUsageMultiplier { get; private set; }
     public ConfigEntry<float> ManaUsageMultiplier { get; private set; }
 
@@ -38,16 +50,41 @@ public class PluginConfig
     public ConfigEntry<float> RewardCoinMultiplier { get; private set; }
     public ConfigEntry<float> SellCoinMultiplier { get; private set; }
 
+    public ConfigEntry<bool> DebugLogs { get; private set; }
+
     public PluginConfig(ConfigFile config)
     {
         config.SaveOnConfigSet = false;
         try
         {
+            config.Bind(DamageDealtMultipliers, "@" + DamageDealtMultipliers, "", MultiplierDescription);
+            PlayerDamageDealtMultiplier = config.Bind(DamageDealtMultipliers, nameof(PlayerDamageDealtMultiplier), 1f,
+                "Multiplier for damage dealt by the player to all targets");
+            PlayerSummonDamageDealtMultiplier = config.Bind(DamageDealtMultipliers,
+                nameof(PlayerSummonDamageDealtMultiplier), 1f,
+                "Multiplier for damage dealt by player summons to all targets");
+            EnemyDamageDealtMultiplier = config.Bind(DamageDealtMultipliers, nameof(EnemyDamageDealtMultiplier), 1f,
+                "Multiplier for damage dealt by normal enemies to all targets");
+            MiniBossDamageDealtMultiplier = config.Bind(DamageDealtMultipliers, nameof(MiniBossDamageDealtMultiplier),
+                1f, "Multiplier for damage dealt by mini bosses to all targets");
+            BossDamageDealtMultiplier = config.Bind(DamageDealtMultipliers, nameof(BossDamageDealtMultiplier), 1f,
+                "Multiplier for damage dealt by bosses to all targets");
+
+            config.Bind(DamageTakenMultipliers, "@" + DamageTakenMultipliers, "", MultiplierDescription);
+            PlayerDamageTakenMultiplier = config.Bind(DamageTakenMultipliers, nameof(PlayerDamageTakenMultiplier), 1f,
+                "Multiplier for damage taken by the player from all sources");
+            PlayerSummonDamageTakenMultiplier = config.Bind(DamageTakenMultipliers,
+                nameof(PlayerSummonDamageTakenMultiplier), 1f,
+                "Multiplier for damage taken by player summons from all sources");
+            EnemyDamageTakenMultiplier = config.Bind(DamageTakenMultipliers, nameof(EnemyDamageTakenMultiplier), 1f,
+                "Multiplier for damage taken by normal enemies from all sources");
+            MiniBossDamageTakenMultiplier = config.Bind(DamageTakenMultipliers, nameof(MiniBossDamageTakenMultiplier),
+                1f, "Multiplier for damage taken by mini bosses from all sources");
+            BossDamageTakenMultiplier = config.Bind(DamageTakenMultipliers, nameof(BossDamageTakenMultiplier), 1f,
+                "Multiplier for damage taken by bosses from all sources");
+
+
             config.Bind(DifficultyMultipliers, "@" + DifficultyMultipliers, "", MultiplierDescription);
-            DamageDealtMultiplier = config.Bind(DifficultyMultipliers, nameof(DamageDealtMultiplier), 1f,
-                "Multiplier for damage dealt by the player, higher value means more damage is dealt");
-            DamageReceivedMultiplier = config.Bind(DifficultyMultipliers, nameof(DamageReceivedMultiplier), 1f,
-                "Multiplier for damage dealt to the player, higher value means more damage is received");
             StaminaUsageMultiplier = config.Bind(DifficultyMultipliers, nameof(StaminaUsageMultiplier), 1f,
                 "Multiplier for stamina usage, higher value means more stamina is used");
             ManaUsageMultiplier = config.Bind(DifficultyMultipliers, nameof(ManaUsageMultiplier), 1f,
@@ -86,6 +123,9 @@ public class PluginConfig
                 "Multiplier for coins gained from looting, quests, etc., higher value means more coins are gained");
             SellCoinMultiplier = config.Bind(CoinMultipliers, nameof(SellCoinMultiplier), 1f,
                 "Multiplier for coins gained from selling items, higher value means more coins are gained");
+
+            DebugLogs = config.Bind("Debug", nameof(DebugLogs), false,
+                "When enabled, debug logs will be written to the BepInEx console");
         }
         finally
         {
