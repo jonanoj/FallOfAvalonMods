@@ -12,6 +12,7 @@ public class PluginConfig
     public ConfigEntry<Color> CriticalDamageColor { get; private set; }
     public ConfigEntry<int> MaximumDamageNumbers { get; private set; }
     public ConfigEntry<float> HideDamageNumberThreshold { get; private set; }
+    public ConfigEntry<float> MaximumFloatAngle { get; private set; }
 
     private const string ColorDescription =
         """
@@ -55,6 +56,14 @@ public class PluginConfig
                 Minimum amount of damage to show a number for, any value below this will be hidden
                 You can also specify number
                 """);
+            MaximumFloatAngle = config.Bind(damageNumbersCategory, nameof(MaximumFloatAngle), 25f,
+                new ConfigDescription(
+                    """
+                    The maximum angle (in degrees) that damage numbers can float upwards.
+                    0 = always float straight up.
+                    25 = float at a random angle between -25° and +25° (a 50° spread).
+                    """,
+                    new AcceptableValueRange<float>(0f, 90f)));
         }
         finally
         {

@@ -41,7 +41,7 @@ public class DamageNumberPool : MonoBehaviour
 
     public void ShowDamage(DamageOutcome outcome)
     {
-        float amount = Mathf.Ceil(outcome.FinalAmount * 10f) / 10f;
+        float amount = Mathf.Round(outcome.FinalAmount * 10f) / 10f;
         if (amount < Plugin.PluginConfig.HideDamageNumberThreshold.Value)
         {
             return;

@@ -17,6 +17,7 @@ public class DamageNumber : MonoBehaviour
     private float _lifetime;
     private float _elapsed;
     private Vector3 _position;
+    private Vector3 _floatDirection;
     private Color _startColor;
     private Action<DamageNumber> _onDespawn;
 
@@ -57,11 +58,14 @@ public class DamageNumber : MonoBehaviour
         _fontSize = GetFontSize();
         _startColor = color;
 
-        _text.text = damage.ToString();
+        _text.text = damage;
         _text.color = color;
         _text.fontSize = _fontSize;
 
         _position = position;
+        float maxAngle = Plugin.PluginConfig.MaximumFloatAngle.Value;
+        float angle = UnityEngine.Random.Range(-maxAngle, maxAngle);
+        _floatDirection = Quaternion.Euler(0, 0, angle) * Vector3.up;
         _lifetime = Plugin.PluginConfig.TextFadeTimeSeconds.Value;
         _floatSpeed = Plugin.PluginConfig.TextFloatSpeed.Value;
         _elapsed = 0f;
@@ -85,7 +89,7 @@ public class DamageNumber : MonoBehaviour
 
         if (_camera && _canvas && _canvasRectTransform)
         {
-            Vector3 worldPos = _position + Vector3.up * (_elapsed * _floatSpeed);
+            Vector3 worldPos = _position + _floatDirection * (_elapsed * _floatSpeed);
             Vector3 screenPos = _camera.WorldToScreenPoint(worldPos);
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRectTransform, screenPos, null,
                 out Vector2 localPoint);
