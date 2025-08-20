@@ -4,6 +4,7 @@ using Awaken.TG.Main.Character;
 using Awaken.TG.Main.Fights.DamageInfo;
 using Awaken.TG.Main.Fights.NPCs;
 using Awaken.TG.Main.Heroes;
+using Awaken.TG.Main.Locations.Attachments.Elements;
 using BepInEx.Configuration;
 using HarmonyLib;
 
@@ -41,13 +42,19 @@ public class DamagePatch
             return;
         }
 
+        if (__instance.Target is AliveLocation)
+        {
+            // Don't touch mining/woodcutting/etc
+            return;
+        }
+
         float originalValue = __result;
 
-        var dealerType = DamageOwnerType.Unknown;
+        DamageOwnerType dealerType = DamageOwnerType.Unknown;
         try
         {
             dealerType = OwnerTypeFor(__instance.DamageDealer);
-            if (DamageDealerToMultiplier.TryGetValue(dealerType, out var multiplier))
+            if (DamageDealerToMultiplier.TryGetValue(dealerType, out ConfigEntry<float> multiplier))
             {
                 __result *= multiplier.Value;
             }
@@ -62,11 +69,11 @@ public class DamagePatch
             Plugin.Log.LogError("Failed to calculate damage dealt, please report this to the mod author\n" + ex);
         }
 
-        var targetType = DamageOwnerType.Unknown;
+        DamageOwnerType targetType = DamageOwnerType.Unknown;
         try
         {
             targetType = OwnerTypeFor(__instance.Target);
-            if (DamageTargetToMultiplier.TryGetValue(targetType, out var multiplier))
+            if (DamageTargetToMultiplier.TryGetValue(targetType, out ConfigEntry<float> multiplier))
             {
                 __result *= multiplier.Value;
             }
