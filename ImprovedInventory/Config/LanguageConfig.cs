@@ -22,11 +22,11 @@ public class LanguageConfig
         try
         {
             const string language = "Language";
-            SortByWorthDescDisplayName = config.Bind(language, nameof(SortByWorthDescDisplayName), "Price/Weight",
-                "Display name to show for Price/Weight sort type, you can modify this if you're playing in a different language");
+            SortByWorthDescDisplayName = config.Bind(language, nameof(SortByWorthDescDisplayName), "Price/Weight Descending",
+                "Display name to show for Price/Weight Descending sort type, you can modify this if you're playing in a different language");
             SortByWorthAscDisplayName = config.Bind(language, nameof(SortByWorthAscDisplayName),
-                "Price/Weight (Ascending)",
-                "Display name to show for Price/Weight (Ascending) sort type, you can modify this if you're playing in a different language");
+                "Price/Weight Ascending",
+                "Display name to show for Price/Weight Ascending sort type, you can modify this if you're playing in a different language");
             SortByTotalWeightDescDisplayName = config.Bind(language, nameof(SortByTotalWeightDescDisplayName),
                 "Total Weight",
                 "Display name to show for Total Weight sort type, you can modify this if you're playing in a different language");
