@@ -16,8 +16,9 @@ public class ItemsSortingExtended : ItemsSorting
         Plugin.LanguageConfig.SortByTotalWeightDescDisplayName.Value,
         ExtendedItemComparers.CompareTotalWeightDescending);
 
+    // Game version 1.1 - Alphabetical sorting was added, this sort method is still left & injected as an enum value in case someone saved their game with this sort method selected (otherwise the player inventory will fail to render)
     public static readonly ItemsSortingExtended AlphabeticalAsc = new(nameof(AlphabeticalAsc),
-        Plugin.LanguageConfig.SortByNameDisplayName.Value, ExtendedItemComparers.CompareItemName);
+        "Name", Alphabetically);
 
     public static readonly ItemsSortingExtended ByArmorWorthDesc = new(nameof(ByArmorWorthDesc),
         Plugin.LanguageConfig.SortByArmorWorthDescDisplayName.Value,

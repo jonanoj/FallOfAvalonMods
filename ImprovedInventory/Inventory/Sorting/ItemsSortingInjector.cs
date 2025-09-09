@@ -18,8 +18,6 @@ public static class ItemsSortingInjector
 
         bool byTotalWeight = !config.SortByTotalWeightDescEnabled.Value ||
                              AddComparerAfter(ItemsSorting.ByWeightDescending, ItemsSortingExtended.ByTotalWeightDesc);
-        bool byName = !config.SortByNameEnabled.Value ||
-                      AddComparerAfter(ItemsSorting.ByNewestDescending, ItemsSortingExtended.AlphabeticalAsc);
         bool byArmor = !config.SortByArmorWorthDescEnabled.Value ||
                        AddComparerAfter(ItemsSorting.ArmorComparers, nameof(ItemsSorting.ArmorComparers),
                            ItemsSorting.ByArmorDescending, ItemsSortingExtended.ByArmorWorthDesc);
@@ -40,7 +38,7 @@ public static class ItemsSortingInjector
         DumpComparers(nameof(ItemsSorting.ArmorComparers), ItemsSorting.ArmorComparers);
 #endif
 
-        return byWorth && byTotalWeight && byName && byArmor;
+        return byWorth && byTotalWeight && byArmor;
     }
 
     private static bool AddComparerAfter(ItemsSorting afterValue, params ItemsSorting[] additionalComparers)

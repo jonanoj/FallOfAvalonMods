@@ -5,7 +5,6 @@ namespace ImprovedInventory.Config;
 
 public class PluginConfig
 {
-    public ConfigEntry<bool> SortByNameEnabled { get; private set; }
     public ConfigEntry<bool> SortByWorthDescEnabled { get; private set; }
     public ConfigEntry<bool> SortByWorthAscEnabled { get; private set; }
     public ConfigEntry<bool> SortByTotalWeightDescEnabled { get; private set; }
@@ -28,8 +27,6 @@ public class PluginConfig
         try
         {
             const string itemSorting = "ItemSorting";
-            SortByNameEnabled = config.Bind(itemSorting, nameof(SortByNameEnabled), true,
-                "Add sorting by item name (alphabetical order)");
             SortByWorthDescEnabled = config.Bind(itemSorting, nameof(SortByWorthDescEnabled), true,
                 "Add sorting by price/weight ratio descending (bigger values first)");
             SortByWorthAscEnabled = config.Bind(itemSorting, nameof(SortByWorthAscEnabled), true,
