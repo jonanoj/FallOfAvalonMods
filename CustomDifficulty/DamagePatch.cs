@@ -33,35 +33,31 @@ public class DamagePatch
             { DamageOwnerType.Boss, Plugin.PluginConfig.BossDamageTakenMultiplier },
         };
 
-    [HarmonyPatch(typeof(Damage), nameof(Damage.Amount), MethodType.Getter)]
-    [HarmonyPostfix]
-    public static void DamageAmountPostfix(Damage __instance, ref float __result)
+    [HarmonyPatch(typeof(HealthElement), nameof(HealthElement.OnDamage))]
+    [HarmonyPrefix]
+    public static void OnDamagePrefix([HarmonyArgument(0)] Damage damage)
     {
-        if (!__instance.RawData._finalCalculated)
-        {
-            return;
-        }
-
-        if (__instance.Target is AliveLocation)
+        // You can use the cheat console command to debug all damage calculations - toggle.raw-damage-logs
+        if (damage.Target is AliveLocation)
         {
             // Don't touch mining/woodcutting/etc
             return;
         }
 
-        float originalValue = __result;
+        float finalMultiplier = 1;
 
         DamageOwnerType dealerType = DamageOwnerType.Unknown;
         try
         {
-            dealerType = OwnerTypeFor(__instance.DamageDealer);
+            dealerType = OwnerTypeFor(damage.DamageDealer);
             if (DamageDealerToMultiplier.TryGetValue(dealerType, out ConfigEntry<float> multiplier))
             {
-                __result *= multiplier.Value;
+                finalMultiplier *= multiplier.Value;
             }
             else
             {
                 Plugin.Log.LogWarning(
-                    $"Damage by unknown source, please report this to the mod author: {__instance.DamageDealer.GetType()}");
+                    $"Damage by unknown source, please report this to the mod author: {damage.DamageDealer.GetType()}");
             }
         }
         catch (Exception ex)
@@ -72,15 +68,15 @@ public class DamagePatch
         DamageOwnerType targetType = DamageOwnerType.Unknown;
         try
         {
-            targetType = OwnerTypeFor(__instance.Target);
+            targetType = OwnerTypeFor(damage.Target);
             if (DamageTargetToMultiplier.TryGetValue(targetType, out ConfigEntry<float> multiplier))
             {
-                __result *= multiplier.Value;
+                finalMultiplier *= multiplier.Value;
             }
             else
             {
                 Plugin.Log.LogWarning(
-                    $"Damage to unknown target, please report this to the mod author: {__instance.Target.GetType()}");
+                    $"Damage to unknown target, please report this to the mod author: {damage.Target.GetType()}");
             }
         }
         catch (Exception ex)
@@ -90,8 +86,11 @@ public class DamagePatch
 
         if (Plugin.PluginConfig.DebugLogs.Value)
         {
-            Plugin.Log.LogInfo($"{dealerType} -> {targetType} damage changed from {originalValue} to {__result}");
+            Plugin.Log.LogInfo(
+                $"{dealerType} -> {targetType} damage multiplied by {finalMultiplier}");
         }
+
+        damage.RawData.MultiplyMultModifier(finalMultiplier);
     }
 
     private static DamageOwnerType OwnerTypeFor(IAlive character)
