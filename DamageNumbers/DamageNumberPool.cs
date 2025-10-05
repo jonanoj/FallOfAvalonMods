@@ -47,7 +47,7 @@ public class DamageNumberPool : MonoBehaviour
             return;
         }
 
-        string amountString = amount > 1 ? Mathf.RoundToInt(amount).ToString() : amount.ToString("N1");
+        string amountString = amount >= 1 ? Mathf.RoundToInt(amount).ToString() : amount.ToString("N1");
 
         if (_pool.Count == 0)
         {
